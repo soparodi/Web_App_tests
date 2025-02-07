@@ -1,0 +1,38 @@
+@page
+@model ProdottiModel
+@{
+    ViewData["Title"] = "Prodotti";
+ }
+
+<h1>@ViewData["Title"]</h1>
+
+<div>
+    <form method="get">
+        <button type="submit" class="btn btn-primary">Cerca</button>
+        <div class="form-group">
+            <input type="text" name="ricerca" class=" form-control" placeholder="Cerca prodotto per nome">
+        </div>
+        
+    </form>
+    <table class="table">
+        <thead>
+            <tr>
+              <th>Nome</th>
+              <th>Prezzo</th>
+              <th>Dettaglio</th> 
+              <th>Link</th>  
+            </tr>     
+        </thead>
+        <tbody>
+            @foreach (var prodotto in Model.Prodotti)
+            {
+                <tr>
+                    <td>@prodotto.Nome</td>
+                    <td>@prodotto.Prezzo</td>
+                    <td>@prodotto.Dettaglio</td>
+                    <td><a asp-page="/DettaglioProdotto" asp-route-nome= "@prodotto.Nome"asp-route-prezzo= "@prodotto.Prezzo"asp-route-dettaglio= "@prodotto.Dettaglio">Dettaglio</a></td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

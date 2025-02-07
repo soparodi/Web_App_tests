@@ -1,0 +1,38 @@
+{
+  "Id": 6,
+  "UserName": "Carmine",
+  "Carrello": [],
+  "StoricoAcquisti": [
+    [
+      {
+        "Id": 21,
+        "Nome": "petto di pollo",
+        "Prezzo": 3.90,
+        "Giacenza": 298,
+        "Quantita": 2,
+        "Categoria": null,
+        "Data": "07/01/2025"
+      },
+      {
+        "Id": 10,
+        "Nome": "panbauletto",
+        "Prezzo": 1.20,
+        "Giacenza": 290,
+        "Quantita": 1,
+        "Categoria": null,
+        "Data": "07/01/2025"
+      },
+      {
+        "Id": 25,
+        "Nome": "buondi motta",
+        "Prezzo": 2.60,
+        "Giacenza": 499,
+        "Quantita": 1,
+        "Categoria": null,
+        "Data": "07/01/2025"
+      }
+    ]
+  ],
+  "PercentualeSconto": 0,
+  "Credito": 88.40
+}

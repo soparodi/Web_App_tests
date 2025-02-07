@@ -1,0 +1,209 @@
+<!doctype html>
+<html lang="en">
+
+<head> <!-- Head con i CDN necessari -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>supermercato bootstrap</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <!--Google font links-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Playwrite+ES+Deco+Guides&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Fjalla+One&family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Playwrite+ES+Deco+Guides&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Lora:ital,wght@0,400..700;1,400..700&family=Lugrasimo&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<!-- comincia la sezione body -->
+
+<body>
+    <!--inizio della navbar col suo menu-->
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">Supermercato Bootstrap</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="Contatti.html">Contatti</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                            Menu
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#">Action</a></li>
+                            <li><a class="dropdown-item" href="#">Another action</a></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li><a class="dropdown-item" href="#">Something else here</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+
+                        <button class="btn btn" style="color: greenyellow;" type="button" data-bs-toggle="offcanvas"
+                            data-bs-target="#staticBackdrop" aria-controls="staticBackdrop">
+                            Carrello
+                        </button>
+
+                    </li>
+
+                </ul>
+                <form class="d-flex" role="search">
+                    <input class="form-control me-2" type="search" placeholder="Search" style="background-color: green;"
+                        aria-label="Search">
+                    <button class="btn btn-outline-success" type="submit"
+                        style="color: greenyellow; background-color: rgb(69, 171, 69);">Search</button>
+                </form>
+            </div>
+        </div>
+    </nav>
+    <!-- fine navbar -->
+    <!-- ho inserito il resto di offcanvas (vedi bootstrap) dopo la navbar -->
+    <div class="offcanvas offcanvas-start" data-bs-backdrop="static" tabindex="-1" id="staticBackdrop"
+        aria-labelledby="staticBackdropLabel">
+        <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="staticBackdropLabel">Carrello</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body">
+            <div>
+
+            </div>
+        </div>
+    </div>
+    <!-- carosello sotto l'intestazione -->
+    <div class="container">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 d-flex flex-column ">
+                    <div class="col">                      
+                        <div id="carouselExampleIndicators" class="carousel slide">
+                            <div class="carousel-indicators">
+                              <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                              <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                              <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                            </div>
+                            <div class="carousel-inner">
+                              <div class="carousel-item active">
+                                <img src="https://img.joomcdn.net/5ba0c59ac5bdb4750ec4c92a752306d5ddbccaf6_original.jpeg" class="d-block w-100" alt="...">
+                              </div>
+                              <div class="carousel-item">
+                                <img src="https://img.joomcdn.net/f5cc4408e4c7cc959130bda4907c7bb5e64688fd_original.jpeg" class="d-block w-100" alt="...">
+                              </div>
+                              <div class="carousel-item">
+                                <img src="https://img.joomcdn.net/4f6f87c5eba655b11014fcc610baef5656cab2b5_original.jpeg" class="d-block w-100" alt="...">
+                              </div>
+                            </div>
+                            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+                              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                              <span class="visually-hidden">Previous</span>
+                            </button>
+                            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+                              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                              <span class="visually-hidden">Next</span>
+                            </button>
+                          </div>  
+                    </div>
+                </div>
+
+                <div class="col-md-6 d-flex flex-column">
+                    <h2 class="descrizioneTitoloProdotto">Descrizione</h2>
+                    <hr style="margin-top: 10px;">
+                    <div class="mb-4">
+                        <h6>CALZINI MORBIDI E CALDI: </h6>
+                            <p class="descrizioneProdotto">Calzini di lana super spessi, pensati per il freddo, molto morbidi e caldi. Mantengono i piedi caldi nelle stagioni fredde.</p>
+                        
+                        <h6>STILE DI COPPIA:</h6>
+                         <p class="descrizioneProdotto">Calzini di lana spessa unisex. </p>
+                        
+                        <h6>MULTIFUNZIONE:</h6>
+                          <p class="descrizioneProdotto">La lana soffice foderata all'interno le rende morbide e confortevoli, mantengono i piedi e le dita dei piedi calde tutto il giorno, il colore semplice può essere facilmente abbinato ai tuoi outfits. Sono adatte per la stagione invernale.</p>
+                        
+                        <h6>OTTIMI COME IDEA REGALO:</h6>
+                         <p class="descrizioneProdotto">Questi calzini invernali in lana spessa sono il regalo perfetto per Natale o per l'uso quotidiano. È un grande regalo in inverno per familiari e amici.</p>
+                        <h6>MISURE:</h6>
+                        <p class="descrizioneProdotto">
+                        XL, lunghezza 22,5 cm-24,5 cm
+                        </p>
+                        <p class="descrizioneProdotto">
+                        XXL, lunghezza 25.0cm-28cm
+                        </p>
+                        <h6>Genere:</h6> <p class="descrizioneProdotto">Calzini</p>
+                        
+                        <h6>Materiale:</h6> <p class="descrizioneProdotto">Spugna e lana</p>
+                       
+                      <h6>Avviso: </h6>
+                      <p class="descrizioneProdotto">Il pacchetto include: 3 paia. 
+                        Si prega di consentire un errore di 1-3 cm dovuto alla misurazione manuale.
+                        <h6>Lavaggio:</h6> <p class="descrizioneProdotto">Lavare a mano a freddo o in lavatrice, Lavare a secco, Asciugare all'ombra, Non candeggiare.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+   
+
+    <!--INIZIO DEL FOOTER-->
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 d-flex flex-column ">
+                    <p class="address">Piazza Matteotti 2/3b</p>
+                    <p>16123, Genova </p>
+
+                    <hr>
+                    <p>Copyright</p>
+                    <p><a href="Contatti.html"><i class="bi bi-telephone-fill"></i> Contatti</a></p>
+                    <p><a href="#">Chi siamo</a></p>
+                </div>
+
+                <div class="col-md-6 d-flex flex-column">
+                    <p style="margin-top: 20px">I nostri social</p>
+                    <hr style="margin-top: 55px;">
+                    <div class="mb-4">
+                        <i class="bi bi-instagram fs-1 p-5"></i>
+                        <i class="bi bi-facebook fs-1 p-5"></i>
+                        <i class="bi bi-whatsapp fs-1 p-5"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+</body>
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+    crossorigin="anonymous"></script>
+
+</html>

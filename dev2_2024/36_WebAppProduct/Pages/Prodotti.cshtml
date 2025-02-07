@@ -1,0 +1,40 @@
+@page
+@model ProdottiModel
+@{
+    ViewData["Title"] = "Prodotti";
+}
+<h1>@ViewData["Title"]</h1>
+
+<div>
+    <div class="row">
+        @foreach (var item in Model.Prodotti)
+        {
+            <div class="col-md-4 d-flex">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <h5 class="card-title text-dark">@item.Nome</h5>
+                        <p class="card-text text-success">@item.Prezzo</p>
+                        <img src="@item.Immagine" alt="@item.Nome" class="mx-auto d-block mb-3" style="max-width: 200px;" />
+                        <div class="d-grid gap-3">
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <button type="button" class="btn btn-sm btn-outline-secondary">
+                            <a asp-page="ProdottoDettaglio" asp-route-id="@item.Nome" asp-route-dettaglio="@item.Dettaglio"
+                                asp-route-prezzo="@item.Prezzo" asp-route-immagine="@item.Immagine">Dettagli</a>
+                        </button>
+                        <button type="button" class="btn btn-sm btn-outline-secondary">Modifica</button>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+    <form method="get"> @*modulo per mantenere il filtro tra una pagina e l'altra, passando i dati tramite l'url*@
+        <input type="hidden" name="minPrezzo" value="@Request.Query["minPrezzo"]" /> @*hidden nasconde il campo dove c'è scritto il prezzo minimo, Request.Query variabile generica che contiene i dati passati tramite url*@
+        <input type="hidden" name="maxPrezzo" value="@Request.Query["maxPrezzo"]" /> @*hidden nasconde il campo dove c'è scritto il prezzo massimo, dobbiamo passarli ma non dobbiamo vederli*@
+        @for (int i = 1; i <= Model.numeroPagine; i++)
+        {
+            <button type="submit" class="btn btn-dark" name="pageIndex" value="@i">@i</button> @*stampiamo tanti bottoni quanto il numero di pagine e usiamo l'indice "i" sia come valore che come scritta da visualizzare sul bottone*@
+        }
+    </form>
+</div>

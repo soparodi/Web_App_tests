@@ -1,0 +1,47 @@
+{
+  "Id": 7,
+  "UserName": "Rosa",
+  "Carrello": [],
+  "StoricoAcquisti": [
+    [
+      {
+        "Id": 24,
+        "Nome": "mozzarella",
+        "Prezzo": 2.30,
+        "Giacenza": 294,
+        "Quantita": 4,
+        "Categoria": null,
+        "Data": "07/01/2025"
+      },
+      {
+        "Id": 15,
+        "Nome": "biscotti",
+        "Prezzo": 2.90,
+        "Giacenza": 399,
+        "Quantita": 1,
+        "Categoria": null,
+        "Data": "07/01/2025"
+      },
+      {
+        "Id": 21,
+        "Nome": "petto di pollo",
+        "Prezzo": 3.90,
+        "Giacenza": 292,
+        "Quantita": 6,
+        "Categoria": null,
+        "Data": "07/01/2025"
+      },
+      {
+        "Id": 22,
+        "Nome": "prosciutto cotto",
+        "Prezzo": 2.00,
+        "Giacenza": 295,
+        "Quantita": 4,
+        "Categoria": null,
+        "Data": "07/01/2025"
+      }
+    ]
+  ],
+  "PercentualeSconto": 0,
+  "Credito": 56.50
+}

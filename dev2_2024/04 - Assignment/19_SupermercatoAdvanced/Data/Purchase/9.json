@@ -1,0 +1,19 @@
+{
+  "Id": 9,
+  "ProdottoPurchase": [
+    {
+      "Id": 12,
+      "Nome": "latte",
+      "Prezzo": 1.90,
+      "Giacenza": 295,
+      "Quantita": 2,
+      "Categoria": null,
+      "Data": null
+    }
+  ],
+  "Data": "10/01/2025 10:42:05",
+  "Stato": true,
+  "Totale": 3.80,
+  "IdCliente": 9,
+  "NomeCliente": "Christian"
+}

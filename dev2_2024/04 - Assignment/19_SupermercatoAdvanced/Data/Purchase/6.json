@@ -1,0 +1,37 @@
+{
+  "Id": 6,
+  "ProdottoPurchase": [
+    {
+      "Id": 21,
+      "Nome": "petto di pollo",
+      "Prezzo": 3.90,
+      "Giacenza": 298,
+      "Quantita": 2,
+      "Categoria": null,
+      "Data": null
+    },
+    {
+      "Id": 10,
+      "Nome": "panbauletto",
+      "Prezzo": 1.20,
+      "Giacenza": 290,
+      "Quantita": 1,
+      "Categoria": null,
+      "Data": null
+    },
+    {
+      "Id": 25,
+      "Nome": "buondi motta",
+      "Prezzo": 2.60,
+      "Giacenza": 499,
+      "Quantita": 1,
+      "Categoria": null,
+      "Data": null
+    }
+  ],
+  "Data": "07/01/2025 16:01:05",
+  "Stato": true,
+  "Totale": 11.60,
+  "IdCliente": 6,
+  "NomeCliente": "Carmine"
+}

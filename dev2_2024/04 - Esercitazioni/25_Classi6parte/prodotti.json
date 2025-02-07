@@ -1,0 +1,32 @@
+[
+  {
+    "Id": 1,
+    "NomeProdotto": "patate",
+    "PrezzoProdotto": 3.0,
+    "GiacenzaProdotto": 4
+  },
+  {
+    "Id": 2,
+    "NomeProdotto": "carote",
+    "PrezzoProdotto": 3.0,
+    "GiacenzaProdotto": 4
+  },
+  {
+    "Id": 3,
+    "NomeProdotto": "pur\u0000",
+    "PrezzoProdotto": 2.0,
+    "GiacenzaProdotto": 6
+  },
+  {
+    "Id": 4,
+    "NomeProdotto": "insalata",
+    "PrezzoProdotto": 1.0,
+    "GiacenzaProdotto": 7
+  },
+  {
+    "Id": 5,
+    "NomeProdotto": "cipolle",
+    "PrezzoProdotto": 2.0,
+    "GiacenzaProdotto": 4
+  }
+]

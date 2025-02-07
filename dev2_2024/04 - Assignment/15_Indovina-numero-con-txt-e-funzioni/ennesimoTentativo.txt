@@ -1,0 +1,2 @@
+Tentativo 1: 1
+Hai indovinato! Il numero da indovinare era: 1. Tentativi: 1

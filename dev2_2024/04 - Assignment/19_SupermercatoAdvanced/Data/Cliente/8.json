@@ -1,0 +1,47 @@
+{
+  "Id": 8,
+  "UserName": "Sergio",
+  "Carrello": [],
+  "StoricoAcquisti": [
+    [
+      {
+        "Id": 26,
+        "Nome": "cioccolata ciobar",
+        "Prezzo": 2.50,
+        "Giacenza": 499,
+        "Quantita": 1,
+        "Categoria": null,
+        "Data": "07/01/2025"
+      },
+      {
+        "Id": 19,
+        "Nome": "salame nostrano",
+        "Prezzo": 3.50,
+        "Giacenza": 398,
+        "Quantita": 1,
+        "Categoria": null,
+        "Data": "07/01/2025"
+      },
+      {
+        "Id": 20,
+        "Nome": "crostini",
+        "Prezzo": 2.50,
+        "Giacenza": 497,
+        "Quantita": 1,
+        "Categoria": null,
+        "Data": "07/01/2025"
+      },
+      {
+        "Id": 22,
+        "Nome": "prosciutto cotto",
+        "Prezzo": 2.00,
+        "Giacenza": 293,
+        "Quantita": 2,
+        "Categoria": null,
+        "Data": "07/01/2025"
+      }
+    ]
+  ],
+  "PercentualeSconto": 0,
+  "Credito": 87.50
+}

@@ -1,0 +1,38 @@
+{
+  "Id": 5,
+  "UserName": "Patrizia",
+  "Carrello": [],
+  "StoricoAcquisti": [
+    [
+      {
+        "Id": 18,
+        "Nome": "mele",
+        "Prezzo": 2.00,
+        "Giacenza": 197,
+        "Quantita": 3,
+        "Categoria": null,
+        "Data": "07/01/2025"
+      },
+      {
+        "Id": 1,
+        "Nome": "fagiolini",
+        "Prezzo": 2.99,
+        "Giacenza": 30,
+        "Quantita": 5,
+        "Categoria": null,
+        "Data": "07/01/2025"
+      },
+      {
+        "Id": 12,
+        "Nome": "latte",
+        "Prezzo": 1.90,
+        "Giacenza": 297,
+        "Quantita": 3,
+        "Categoria": null,
+        "Data": "07/01/2025"
+      }
+    ]
+  ],
+  "PercentualeSconto": 0,
+  "Credito": 73.35
+}

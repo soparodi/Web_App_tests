@@ -1,0 +1,20 @@
+{
+  "Id": 2,
+  "UserName": "Felipe",
+  "Carrello": [],
+  "StoricoAcquisti": [
+    [
+      {
+        "Id": 10,
+        "Nome": "panbauletto",
+        "Prezzo": 1.20,
+        "Giacenza": 291,
+        "Quantita": 3,
+        "Categoria": null,
+        "Data": "06/01/2025"
+      }
+    ]
+  ],
+  "PercentualeSconto": 0,
+  "Credito": 96.40
+}

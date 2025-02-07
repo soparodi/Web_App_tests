@@ -1,0 +1,27 @@
+{
+  "Id": 10,
+  "UserName": "Anna",
+  "Carrello": [
+    {
+      "Id": 23,
+      "Nome": "stracchino",
+      "Prezzo": 2.45,
+      "Giacenza": 299,
+      "Quantita": 1,
+      "Categoria": null,
+      "Data": null
+    },
+    {
+      "Id": 27,
+      "Nome": "miele",
+      "Prezzo": 4.50,
+      "Giacenza": 498,
+      "Quantita": 1,
+      "Categoria": null,
+      "Data": null
+    }
+  ],
+  "StoricoAcquisti": [],
+  "PercentualeSconto": 0,
+  "Credito": 100.0
+}

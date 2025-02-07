@@ -1,0 +1,46 @@
+{
+  "Id": 7,
+  "ProdottoPurchase": [
+    {
+      "Id": 24,
+      "Nome": "mozzarella",
+      "Prezzo": 2.30,
+      "Giacenza": 294,
+      "Quantita": 4,
+      "Categoria": null,
+      "Data": null
+    },
+    {
+      "Id": 15,
+      "Nome": "biscotti",
+      "Prezzo": 2.90,
+      "Giacenza": 399,
+      "Quantita": 1,
+      "Categoria": null,
+      "Data": null
+    },
+    {
+      "Id": 21,
+      "Nome": "petto di pollo",
+      "Prezzo": 3.90,
+      "Giacenza": 292,
+      "Quantita": 6,
+      "Categoria": null,
+      "Data": null
+    },
+    {
+      "Id": 22,
+      "Nome": "prosciutto cotto",
+      "Prezzo": 2.00,
+      "Giacenza": 295,
+      "Quantita": 4,
+      "Categoria": null,
+      "Data": null
+    }
+  ],
+  "Data": "07/01/2025 16:04:54",
+  "Stato": true,
+  "Totale": 43.50,
+  "IdCliente": 7,
+  "NomeCliente": "Rosa"
+}

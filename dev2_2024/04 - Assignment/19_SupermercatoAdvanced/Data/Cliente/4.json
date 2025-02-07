@@ -1,0 +1,38 @@
+{
+  "Id": 4,
+  "UserName": "Fabio",
+  "Carrello": [],
+  "StoricoAcquisti": [
+    [
+      {
+        "Id": 19,
+        "Nome": "salame nostrano",
+        "Prezzo": 3.50,
+        "Giacenza": 399,
+        "Quantita": 1,
+        "Categoria": null,
+        "Data": "07/01/2025"
+      },
+      {
+        "Id": 20,
+        "Nome": "crostini",
+        "Prezzo": 2.50,
+        "Giacenza": 498,
+        "Quantita": 1,
+        "Categoria": null,
+        "Data": "07/01/2025"
+      },
+      {
+        "Id": 27,
+        "Nome": "miele",
+        "Prezzo": 4.50,
+        "Giacenza": 499,
+        "Quantita": 1,
+        "Categoria": null,
+        "Data": "07/01/2025"
+      }
+    ]
+  ],
+  "PercentualeSconto": 0,
+  "Credito": 89.50
+}

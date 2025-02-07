@@ -1,0 +1,7 @@
+Tentativo 1: 10
+Tentativo 2: 5
+Tentativo 3: 3
+Tentativo 4: 2
+Tentativo 5: 1
+Tentativo 6: 4
+Hai indovinato! Il numero da indovinare era: 4. Tentativi: 6

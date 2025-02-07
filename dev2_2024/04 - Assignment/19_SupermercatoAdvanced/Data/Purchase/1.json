@@ -1,0 +1,28 @@
+{
+  "Id": 1,
+  "ProdottoPurchase": [
+    {
+      "Id": 1,
+      "Nome": "fagiolini",
+      "Prezzo": 2.99,
+      "Giacenza": 35,
+      "Quantita": 5,
+      "Categoria": null,
+      "Data": null
+    },
+    {
+      "Id": 11,
+      "Nome": "calzini invernali",
+      "Prezzo": 2.99,
+      "Giacenza": 196,
+      "Quantita": 4,
+      "Categoria": null,
+      "Data": null
+    }
+  ],
+  "Data": "06/01/2025 17:02:51",
+  "Stato": true,
+  "Totale": 26.91,
+  "IdCliente": 1,
+  "NomeCliente": "Eleonora"
+}

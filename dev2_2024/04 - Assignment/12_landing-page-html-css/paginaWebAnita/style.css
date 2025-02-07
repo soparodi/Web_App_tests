@@ -1,0 +1,113 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Corpo e sfondo */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #ffffff;
+}
+
+/* Header */
+header {
+    background-color: rgba(0, 0, 0, 0.381);
+    color: #fff;
+    text-align: center;
+    padding: 1rem;
+
+}
+
+/* Layout principale (contenitore flex) */
+.main {
+    
+    display: flex;/* Disporre i figli orizzontalmente */
+    margin-top: 20px;
+
+}
+
+
+    /* Box laterale (sidebar) */
+    .sidebar {
+        width: 200px;
+        /* Larghezza fissa del menu laterale */
+        background-color: rgb(83, 73, 83);
+        padding: 20px;
+    }
+
+    .sidebar ul {
+        list-style-type: style type;
+    }
+
+    .sidebar li {
+        margin: 10px 0;
+    }
+
+    .sidebar a {
+        color: #ffffff;
+        text-decoration: none;
+        font-size: 18px;
+
+    }
+
+    /* Contenuto principale (content) */
+    .content {
+        flex: 1;
+        /* Occupa tutto lo spazio rimanente */
+        background-color: #66365a98;
+        margin-left: 450%;
+        /* Distanza dal box laterale */
+        flex-wrap: wrap-reverse;
+    }
+
+    .content h2 {
+        font-size: 24px;
+        margin-bottom: 10px;
+
+    }
+
+    .content p {
+        font-size: 18px;
+
+    }
+
+
+    /* Footer */
+    footer {
+        background-color: #333;
+        color: #fff;
+        text-align: center;
+        padding: 1rem;
+        margin-top: 20px;
+    }
+
+    
+footer div {
+    margin-top: 1rem;
+  
+}
+
+footer a {
+    color: #14031c;
+    text-decoration: none;
+    margin: 0 0.5rem;
+}
+    /* Media Queries per dispositivi più piccoli */
+    @media screen and (max-width: 768px) {
+        .main-container {
+            flex-direction: column;
+            /* Layout a colonna sui dispositivi piccoli */
+        }
+
+        .sidebar {
+            width: 100%;
+            /* Sidebar prende tutta la larghezza */
+            margin-bottom: 20px;
+            /* Distanza tra sidebar e contenuto */
+        }
+
+        .content {
+            margin-left: 0;
+        }
+    }

@@ -1,0 +1,46 @@
+{
+  "Id": 8,
+  "ProdottoPurchase": [
+    {
+      "Id": 26,
+      "Nome": "cioccolata ciobar",
+      "Prezzo": 2.50,
+      "Giacenza": 499,
+      "Quantita": 1,
+      "Categoria": null,
+      "Data": null
+    },
+    {
+      "Id": 19,
+      "Nome": "salame nostrano",
+      "Prezzo": 3.50,
+      "Giacenza": 398,
+      "Quantita": 1,
+      "Categoria": null,
+      "Data": null
+    },
+    {
+      "Id": 20,
+      "Nome": "crostini",
+      "Prezzo": 2.50,
+      "Giacenza": 497,
+      "Quantita": 1,
+      "Categoria": null,
+      "Data": null
+    },
+    {
+      "Id": 22,
+      "Nome": "prosciutto cotto",
+      "Prezzo": 2.00,
+      "Giacenza": 293,
+      "Quantita": 2,
+      "Categoria": null,
+      "Data": null
+    }
+  ],
+  "Data": "07/01/2025 16:10:35",
+  "Stato": true,
+  "Totale": 12.50,
+  "IdCliente": 8,
+  "NomeCliente": "Sergio"
+}

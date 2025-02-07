@@ -1,0 +1,102 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] Supermercato Bootstrap</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/_35_WebAppProdotti.styles.css" asp-append-version="true" />
+</head>
+
+<body>
+
+    <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+        <div class="container">
+            <a class="navbar-brand" asp-area="" asp-page="/Index">Supermercato Bootstrap</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                <ul class="navbar-nav flex-grow-1">
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" asp-area="" asp-page="/Index">Home</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" asp-area="" asp-page="/Index" role="button"
+                            data-bs-toggle="dropdown" aria-expanded="false">Menu</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" asp-area="" asp-page="/Contatti">Contatti</a>
+                    </li>
+                    <li>
+                        <a class="nav-link text-dark" asp-area="" asp-page="/Prodotti">Prodotti</a>
+                    </li>
+                    <li>
+                        <button class="btn btn" type="button" data-bs-toggle="offcanvas"
+                            data-bs-target="#staticBackdrop" aria-controls="staticBackdrop">
+                        <a class="nav-link text-dark" asp-area="" asp-page="/Dettaglio">Dettaglio</a>
+                        </button>
+                    </li>
+                    <li class="nav-item">
+                        <button class="btn btn" style="color: greenyellow;" type="button" data-bs-toggle="offcanvas"
+                            data-bs-target="#staticBackdrop" aria-controls="staticBackdrop">
+                        <a class="nav-link text-dark" asp-area="" asp-page="/Index">Carrello</a>
+    
+                        </button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+   <!-- <footer class="border-top footer text-muted">
+        <div class="container">
+            &copy; 2025 - _35_WebAppProdotti - <a asp-area="" asp-page="/Privacy">Privacy</a>
+        </div>
+    </footer> -->
+
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 d-flex flex-column ">
+                    <p class="address text-white">Piazza Matteotti 2/3b</p>
+                    <p>16123, Genova </p>
+                    
+                    <hr>
+                    <p>Copyright</p>
+                    <p><i class="bi bi-telephone-fill"></i><a asp-area="" asp-page="/Index">Contatti</a></p>
+                    <p><a asp-area="" asp-page="/Index">Chi siamo</a></p>
+                </div>
+
+                <div class="col-md-6 d-flex flex-column">
+                    <p style="margin-top: 20px">I nostri social</p>
+                    <hr style="margin-top: 55px;">
+                    <div class="mb-4 text-white">
+                        <i class="bi bi-instagram fs-1 p-5"></i>
+                        <i class="bi bi-facebook fs-1 p-5"></i>
+                        <i class="bi bi-whatsapp fs-1 p-5"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+
+</html>

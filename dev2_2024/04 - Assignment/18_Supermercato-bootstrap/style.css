@@ -1,0 +1,96 @@
+/* per cambiare in tutto il body e quindi in tutta la pagina in questo caso il formato del testo di google font .playwrite-es-deco-guides-regular {
+  font-family: "Playwrite ES Deco Guides", serif;
+  font-weight: 400;
+  font-style: normal;
+}
+ ho eliminato la prima riga e l'ho sostituita con body senza il punto davanti */
+ 
+:root{
+  --bs-primary: #DAD7CD !important;
+  --bs-secondary:#A3B18A !important;
+  --bs-ternary: #588157 !important;
+  --bs-quaternary: #344E41 !important;
+}
+ body{
+   font-family: "Noto Serif", serif;
+   font-optical-sizing: auto;
+   font-weight: weight;
+   font-style: normal;
+ }
+ body{
+  background-color: #DAD7CD;
+ }
+div.offcanvas-body{
+  background-color:#344E41;
+}
+div.offcanvas-header{
+  background-color:#A3B18A;
+}
+ 
+div.container-fluid{
+  background-color:#588157;
+ }
+ h1.titolo{
+  text-align: center;
+ }
+ 
+.navbar-brand {
+  font-family: "Kanit", serif;
+  font-weight: 700;
+  font-style: normal;
+}
+h1{
+  font-family: "Fjalla One", serif;
+  font-weight: 400;
+  font-style: normal;
+  color: #121b03;
+  justify-content: center;
+}
+
+h2 {
+  font-family: "Kanit", serif;
+  font-weight: 100;
+  font-style: italic;
+}
+footer{
+background-color:#344E41;
+}
+.address {
+  margin-top: 20px; 
+}
+div.col{
+  margin-bottom: 50px;
+}
+
+h2.descrizioneTitoloProdotto{
+  font-family: "Libre Baskerville", serif;
+  font-weight: 700;
+  font-style: normal;
+  text-align: center;
+  margin-top: 30px;
+}
+p.descrizioneProdotto {
+  font-family: "Montserrat", serif;
+  font-optical-sizing: auto;
+  font-weight: weight;
+  font-style: normal;
+}
+table.table-striped.table.table-striped{
+  background-color: #344E41;
+}
+.header{
+  background-color: red;
+  font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+h2.titoloContatti{
+  font-family: "Libre Baskerville", serif;
+  font-weight: 700;
+  font-style: normal;
+  text-align: center;
+  margin-top: 30px;
+}
+a{
+text-decoration: none;
+color: white;
+}
+

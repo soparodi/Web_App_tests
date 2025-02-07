@@ -1,0 +1,14 @@
+[
+  {
+    "Id": 4,
+    "NomeProdotto": "banane",
+    "PrezzoProdotto": 3.0,
+    "GiacenzaProdotto": 4
+  },
+  {
+    "Id": 5,
+    "NomeProdotto": "castagne",
+    "PrezzoProdotto": 3.0,
+    "GiacenzaProdotto": 4
+  }
+]

@@ -1,0 +1,29 @@
+{
+  "Id": 1,
+  "UserName": "Eleonora",
+  "Carrello": [],
+  "StoricoAcquisti": [
+    [
+      {
+        "Id": 1,
+        "Nome": "fagiolini",
+        "Prezzo": 2.99,
+        "Giacenza": 35,
+        "Quantita": 5,
+        "Categoria": null,
+        "Data": "06/01/2025"
+      },
+      {
+        "Id": 11,
+        "Nome": "calzini invernali",
+        "Prezzo": 2.99,
+        "Giacenza": 196,
+        "Quantita": 4,
+        "Categoria": null,
+        "Data": "06/01/2025"
+      }
+    ]
+  ],
+  "PercentualeSconto": 0,
+  "Credito": 73.09
+}

@@ -1,0 +1,12 @@
+@page //direttiva indica che il file
+@model ProdottiModel
+@{
+    ViewData["Title"] = "Prodotti";
+}
+<h1>@ViewData["Title"]</h1>
+
+<p>Questa è la pagina dei prodotti</p>
+
+<p>@ViewData["Messaggio"]</p>
+
+@Html.Partial("_Partial")
