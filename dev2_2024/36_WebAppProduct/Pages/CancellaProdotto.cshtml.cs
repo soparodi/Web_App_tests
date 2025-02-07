@@ -13,7 +13,8 @@ public class CancellaProdottoModel : PageModel
     }
     public Prodotto Prodotto { get; set; } // assegna la proprietà del modello Prodotto alla variabile Prodotto
 
-    public void OnGet(int id) // l'id è sufficiente perché gli abbiamo passato gli altri parametri tramite file json
+    public void OnGet(int id) // inizia quando si accede alla pagina di CancellaProdotto, riceve un parametro id in ingresso che mi da il prodotto da eliminare
+                              // senza OnGet non vedrei i dati del prodotto che sto eliminando
     {
         var json = System.IO.File.ReadAllText("wwwroot/json/prodotti.json"); // legge i prodotti dal file json
         var prodotti = JsonConvert.DeserializeObject<List<Prodotto>>(json); // deserializza il file in una lista
@@ -27,11 +28,11 @@ public class CancellaProdottoModel : PageModel
             }
     }
 
-    public IActionResult Onpost(int id, string nome, decimal prezzo, string dettaglio, string immagine) // accede al form della pagina
+    public IActionResult Onpost(int id) // accede al form della pagina
     {
         var json = System.IO.File.ReadAllText("wwwroot/json/prodotti.json");
         var prodotti = JsonConvert.DeserializeObject<List<Prodotto>>(json);
-            for(int i = 0; i < prodotti.Count; i++)
+            for(int i = 0; i < prodotti.Count; i++) // usiamo il for perché abbiamo bisogno solo dell'indice
             {
                 if (prodotti[i].Id == id) // se il puntatore del prodotto è uguale al numero di id
                 {

@@ -1,29 +1,14 @@
 @page
-@model ProdottoDettaglioModel
+@model CancellaProdottoModel
 @{
-    ViewData["Title"] = "CancellaProdotto";
+    ViewData["Title"] = "Modifica Prodotto";
 }
-
 <h1>@ViewData["Title"]</h1>
 
+<h1>Stai per eliminare @Model.Prodotto.Nome </dialog></h1>
 <div>
     <form method="post">
-        <div class="form-group">
-            <label for="nome">Nome</label>
-            <input type="text" class="form-control" name="nome" value="@Model.Prodotto.Nome" /></label>
-        </div>
-        <div class="form-group">
-            <label for="prezzo">Prezzo</label>
-            <input type="text" class="form-control" name="prezzo" value="@Model.Prodotto.Prezzo" /></label>
-        </div>
-        <div class="form-group">
-            <label for="dettaglio">Dettaglio</label>
-            <input type="text" class="form-control" name="dettaglio" value="@Model.Prodotto.Dettaglio" /></label>
-        </div>
-        <div class="form-group">
-            <label for="dettaglio">Immagine</label>
-            <input type="text" class="form-control" name="immagine" value="@Model.Prodotto.Immagine" /></label>
-        </div>
-        <button type="submit" class="btn btn-dark">Elimina</button>
+        <button type="submit" class="btn btn-primary">Elimina</button>
     </form>
-</div>
+    <a asp-page="/Prodotti">Torna a Prodotti</a>
+</div
