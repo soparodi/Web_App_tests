@@ -5,5 +5,7 @@ public class Prodotto
     public decimal Prezzo { get; set; }
     public string Dettaglio { get; set; }
     public string Immagine { get; set; }
+    public int Quantita { get; set; }
+    public string Categoria { get; set; }
 
 }
