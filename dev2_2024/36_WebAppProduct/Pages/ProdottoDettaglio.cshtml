@@ -1,10 +1,10 @@
 @page
 @model ProdottoDettaglioModel
 @{
-    ViewData ["Title"] = "ProdottoDettaglio";
+    ViewData ["Title"] = "Caratteristiche del prodotto";
 }
 
-<h1>@ViewData["Title"]</h1>
+<h2>@ViewData["Title"]</h2>
 <div>
     <table class="table">
         <thead>
@@ -24,5 +24,5 @@
             </tr>
         </tbody>
     </table>
-    <a asp-page="/Prodotti">Torna a Prodotti</a>
+    <a asp-page="/Prodotti" class="text-success">Torna a Prodotti</a>
 </div>

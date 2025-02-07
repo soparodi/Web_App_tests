@@ -1,5 +1,5 @@
 @page
-@model ProdottoDettaglioModel
+@model ModificaProdottoModel
 @{
     ViewData["Title"] = "ModificaProdotto";
 }
@@ -24,6 +24,6 @@
             <label for="dettaglio">Immagine</label>
             <input type="text" class="form-control" name="immagine" value="@Model.Prodotto.Immagine" /></label>
         </div>
-        <button type="submit" class="btn btn-dark">Salva</button>
+        <button type="submit" class="btn btn-success my-3">Salva</button>
     </form>
 </div>

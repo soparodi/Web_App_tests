@@ -1,74 +1,83 @@
 [
-{
+  {
     "Id": 1,
     "Nome": "Trofie",
     "Prezzo": 1.59,
-    "Quantità": 60,
-    "Categoria": "Pasta",
-    "Immagine" : "https://www.granbologna.it/getattachment/0966183b-be20-4c6d-a661-96c48a751d38/Trofie.aspx"
-},
-{
+    "Dettaglio": "Pasta fresca",
+    "Immagine": "https://www.granbologna.it/getattachment/0966183b-be20-4c6d-a661-96c48a751d38/Trofie.aspx",
+    "Quantita": 25,
+    "Categoria": "Pasta"
+  },
+  {
     "Id": 2,
     "Nome": "Pesto",
     "Prezzo": 2.49,
-    "Quantità": 35,
-    "Categoria": "Condimenti",
-    "Immagine" : "https://www.ilpestodipra.com/easyUp/store/13_350g_conaglio_r844.png"
-},
-{
+    "Dettaglio": "Sugo tipico",
+    "Immagine": "https://www.ilpestodipra.com/easyUp/store/13_350g_conaglio_r844.png",
+    "Quantita": 15,
+    "Categoria": "Condimenti"
+  },
+  {
     "Id": 3,
     "Nome": "Aglio",
     "Prezzo": 0.79,
-    "Quantità": 20,
-    "Categoria": "Verdura",
-    "Immagine" : "https://www.gemuese.ch/media/dcpnjjkg/knoblauch_020919.png?width=720&height=720&format=png&quality=80"
-},
-{
+    "Dettaglio": null,
+    "Immagine": "https://www.gemuese.ch/media/dcpnjjkg/knoblauch_020919.png?width=720&height=720&format=png&quality=80",
+    "Quantita": 10,
+    "Categoria": "Verdura"
+  },
+  {
     "Id": 4,
     "Nome": "Sale",
     "Prezzo": 0.99,
-    "Quantità": 50,
-    "Categoria": "Spezie",
-    "Immagine" : "https://static.vecteezy.com/system/resources/thumbnails/041/042/708/small/ai-generated-heap-of-sea-salt-crystals-free-png.png"
-},
-{
+    "Dettaglio": null,
+    "Immagine": "https://static.vecteezy.com/system/resources/thumbnails/041/042/708/small/ai-generated-heap-of-sea-salt-crystals-free-png.png",
+    "Quantita": 20,
+    "Categoria": "Spezie"
+  },
+  {
     "Id": 5,
     "Nome": "Pinoli",
     "Prezzo": 2.99,
-    "Quantità": 20,
-    "Categoria": "Frutta secca",
-    "Immagine" : "https://www.madiventura.it/pages/wp-content/uploads/2019/01/pinoli.png"
-},
-{
+    "Dettaglio": null,
+    "Immagine": "https://www.madiventura.it/pages/wp-content/uploads/2019/01/pinoli.png",
+    "Quantita": 30,
+    "Categoria": "Frutta secca"
+  },
+  {
     "Id": 6,
     "Nome": "Basilico",
     "Prezzo": 1.29,
-    "Quantità": 15,
-    "Categoria": "Verdura",
-    "Immagine" : "https://www.tomatopiu.com/wp-content/uploads/2016/08/BASILICO-ITALIANOsmall.png"
-},
-{
+    "Dettaglio": null,
+    "Immagine": "https://www.tomatopiu.com/wp-content/uploads/2016/08/BASILICO-ITALIANOsmall.png",
+    "Quantita": 10,
+    "Categoria": "Verdura"
+  },
+  {
     "Id": 7,
     "Nome": "Formaggio Pecorino",
     "Prezzo": 3.49,
-    "Quantità": 30,
-    "Categoria": "Latticini",
-    "Immagine" : "https://fedelieccellenze.it/wp-content/uploads/2020/08/Pecorino_stagionato_02.png"
-},
-{
+    "Dettaglio": null,
+    "Immagine": "https://fedelieccellenze.it/wp-content/uploads/2020/08/Pecorino_stagionato_02.png",
+    "Quantita": 15,
+    "Categoria": "Latticini"
+  },
+  {
     "Id": 8,
     "Nome": "Formaggio Parmigiano",
     "Prezzo": 3.19,
-    "Quantità": 35,
-    "Categoria": "Latticini",
-    "Immagine" : "https://www.parmigianoreggiano.com/_next/image?url=https%3A%2F%2Fbackend.parmigianoreggiano.com%2Fuploads%2Fparm_scon_b994a42fe1.png&w=1920&q=75"
-},
-{
+    "Dettaglio": null,
+    "Immagine": "https://www.parmigianoreggiano.com/_next/image?url=https%3A%2F%2Fbackend.parmigianoreggiano.com%2Fuploads%2Fparm_scon_b994a42fe1.png&w=1920&q=75",
+    "Quantita": 15,
+    "Categoria": "Latticini"
+  },
+  {
     "Id": 9,
     "Nome": "Olio",
     "Prezzo": 11.79,
-    "Quantità": 55,
-    "Categoria": "Condimenti",
-    "Immagine" : "https://bottegaisnardi.it/wp-content/uploads/2021/03/isnardi-taggiasco-ceramica-C19502B.png"
-}
+    "Dettaglio": null,
+    "Immagine": "https://bottegaisnardi.it/wp-content/uploads/2021/03/isnardi-taggiasco-ceramica-C19502B.png",
+    "Quantita": 10,
+    "Categoria": "Condimenti"
+  }
 ]

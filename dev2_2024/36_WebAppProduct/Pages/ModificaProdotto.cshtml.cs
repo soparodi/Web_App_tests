@@ -10,10 +10,6 @@ public class ModificaProdottoModel : PageModel
     public ModificaProdottoModel(ILogger<ModificaProdottoModel> logger) // costruisce dei messaggi che ci danno informazioni sulla pagina
     {
         _logger = logger;
-        _logger.LogInformation("ModificaProdottoModel");
-        _logger.LogDebug("ModificaProdottoModel");
-        _logger.LogWarning("ModificaProdottoModel");
-        _logger.LogError("ModificaProdottoModel");
     }
     public Prodotto Prodotto { get; set; } // passiamo la variabile Prodotto al post
 
@@ -38,6 +34,7 @@ public class ModificaProdottoModel : PageModel
         var prodotti = JsonConvert.DeserializeObject<List<Prodotto>>(json); // deserializza il file json in una lista di prodotti
         
         Prodotto prodotto = null; // dobbiamo dichiare che è una variabile prodotto di tipo Prodotto a cui assegnamo la variabile null
+        // perché deve sempre ritornare qualcosa, quindi se non trova niente non carica nulla
 
         foreach (var p in prodotti) // itera su tutti i prodotti
         {
@@ -47,7 +44,7 @@ public class ModificaProdottoModel : PageModel
             }
         }
         // aggiorniamo i vari campi del prodotto
-        prodotto.Nome = nome;
+        prodotto.Nome = nome; // proprietà del nome a cui assegnamo il nuovo nome
         prodotto.Prezzo = prezzo;
         prodotto.Dettaglio = dettaglio;
         prodotto.Immagine = immagine;
