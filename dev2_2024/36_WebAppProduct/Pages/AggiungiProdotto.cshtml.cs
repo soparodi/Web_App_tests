@@ -4,10 +4,11 @@ using Newtonsoft.Json;
 
 public class AggiungiProdottoModel : PageModel
 {
-    public void OnGet()
+    public void OnGet() // è vuoto perché non serve che vengano visualizzati i dati del prodotto
     {
     }
-    public IActionResult OnPost(string nome, decimal prezzo, string dettaglio)
+    public IActionResult OnPost(string nome, decimal prezzo, string dettaglio) // anzichè recuperare le informazioni, le inserisce
+    // IActionResult è un tipo di dato e restituisce un RISULTATO che gli daremo poi nel return da manipolare in questo ambito web
     {
         var json = System.IO.File.ReadAllText("wwwroot/json/prodotti.json");
         var prodotti = JsonConvert.DeserializeObject<List<Prodotto>>(json);

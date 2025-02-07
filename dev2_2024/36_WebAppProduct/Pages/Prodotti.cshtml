@@ -13,6 +13,17 @@
                 <div class="card h-100">
                     <div class="card-body">
                         <h5 class="card-title text-dark">@item.Nome</h5>
+                        @*
+                        <div>
+                        @if (prodotto.Prezzo < *numero del prezzo massimo*)
+                            {
+                                <p class="text-success">@item.Prezzo</p>
+                            }
+                        else
+                            {
+                                <p class="text-warning">@item.Prezzo</p>
+                            }
+                        </div>      *questo se vogliamo che il prezzo abbia colori diversi quando è il massimo* *@
                         <p class="card-text text-success">@item.Prezzo</p>
                         <img src="@item.Immagine" alt="@item.Nome" class="mx-auto d-block mb-3" style="max-width: 200px;" />
                         <div class="d-grid gap-3">
