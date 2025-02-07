@@ -39,7 +39,7 @@ public class CancellaProdottoModel : PageModel
                     break;
                 }
             }
-        System.IO.File.WriteAllText("wwwroot/json/prodotti.json", JsonConvert.SerializeObject(prodotti)); // serializziamo il prodotto modificato e lo scriviamo sul file json
+        System.IO.File.WriteAllText("wwwroot/json/prodotti.json", JsonConvert.SerializeObject(prodotti, Formatting.Indented)); // serializziamo il prodotto modificato e lo scriviamo sul file json
         return RedirectToPage("Prodotti");
     }
 }

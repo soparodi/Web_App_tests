@@ -18,8 +18,13 @@ public class AggiungiProdottoModel : PageModel
         {
             id = prodotti[prodotti.Count - 1].Id + 1;
         }
-        prodotti.Add(new Prodotto{Nome = nome, Prezzo= prezzo, Dettaglio= dettaglio});
-        System.IO.File.WriteAllText("wwwroot/json/prodotti.json", JsonConvert.SerializeObject(prodotti));
+        prodotti.Add(new Prodotto{
+                                    Id = id,
+                                    Nome = nome,
+                                    Prezzo= prezzo,
+                                    Dettaglio= dettaglio
+                                 });
+        System.IO.File.WriteAllText("wwwroot/json/prodotti.json", JsonConvert.SerializeObject(prodotti, Formatting.Indented));
         return RedirectToPage("Prodotti");
     }
 }
