@@ -4,24 +4,31 @@
     ViewData["Title"] = "Elenco Prodotti";
 }
 
-<h1>Elenco Prodotti</h1>
+<h2>Elenco Prodotti</h2>
 
-<p>
-    <a asp-page="Create">Crea Nuovo Prodotto</a>
-</p>
+<a asp-page="Prodotti" class="btn btn-success mb-3">Elenco Prodotti</a>
 
-<form method="post">
-    <div class="form-group">
-        <label for="nome">Nome
-            <input type="text" class="form-control" name="nome" /></label>
-    </div>
-    <div class="form-group mb-3">
-        <label for="prezzo">Prezzo
-            <input type="text" class="form-control" name="prezzo" /></label>
-    </div>
-    <div class="form-group">
-        <label for="categoria">Categoria
-            <input type="text" class="form-control" name="categoria" /></label>
-    </div>
-    <button type="submit" class="btn btn-dark">Aggiungi</button>
-</form>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Nome</th>
+            <th>Prezzo</th>
+            <th>Categoria</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var prodotto in Model.Prodotti)
+        {
+            <tr>
+                <td>@prodotto.Nome</td>
+                <td>@prodotto.Prezzo.ToString("C")</td>
+                <td>@prodotto.CategoriaNome</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@if (!Model.Prodotti.Any())
+{
+    <p class="text-muted">Nessun prodotto disponibile.</p>
+}

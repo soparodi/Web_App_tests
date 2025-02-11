@@ -51,7 +51,7 @@ public class CreateModel : PageModel
         command.ExecuteNonQuery();
 
         // reindirizzo l'utente alla pagina di elenco dei prodotti
-        return RedirectToPage("Index");
+        return RedirectToPage("Prodotti");
     }
 
     // metodo per caricare le categorie
