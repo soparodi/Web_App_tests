@@ -1,11 +1,13 @@
+using Microsoft.AspNetCore.Mvc; // using in modo da usare IActionResult
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Data.Sqlite;
+using Microsoft.AspNetCore.Mvc.Rendering; // using in modo da usare SelectListItem
 
 public class CreateModel : PageModel
 
 {
-    // proprietà pubblica di tipo prodotto per contenere i dati del prodotto
-    public Prodotto Prodotto { get; set; }
+    [BindProperty] // attributo bind property per collegare il metodo al form
+    public Prodotto Prodotto { get; set; } // proprietà pubblica di tipo prodotto per contenere i dati del prodotto
 
     // creo una lista di select list item per contenere le categorie
     // select list item è un oggetto che rappresenta un elemento in una select list
