@@ -80,5 +80,17 @@ public class DatabaseInitializer
             }
 
             // Seed dei dati per Prodotti (solo se non esistono già)
+            countCommand = new SqliteCommand("SELECT COUNT(*) FROM Prodotti", connection);
+            count = (long)countCommand.ExecuteScalar();
+
+            if (count == 0)
+        {
+                var insertProdotti = @"
+                INSERT INTO Prodotti (Nome, Prezzo, CategoriaId) VALUES 
+                ('Trofie', 1,59, (SELECT Id FROM Categorie WHERE Nome = 'Pasta')),
+                ('Aglio', 0,59, (SELECT Id FROM Categorie WHERE Nome = 'Verdure')),
+                ('Pesto', 2,59, (SELECT Id FROM Categorie WHERE Nome = 'Condimenti')),
+                ";
+
     }
 }
