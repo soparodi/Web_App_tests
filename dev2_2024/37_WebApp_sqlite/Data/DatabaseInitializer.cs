@@ -29,11 +29,56 @@ public class DatabaseInitializer
                 );
                 ";
 
-            // lancio il comando sulla coonessione che ho appena creato
+            // lancio il comando sulla connessione che ho appena creato
             using (var command = new SqliteCommand(createCategorieTable, connection));
 
             {
                 command.ExecuteNonQuery();
             }
+
+            var createCategorieTable = @"
+            CREATE TABLE IF NOT EXISTS Prodotti
+                (
+                Id INTEGER PRIMARY KEY AUTOINCREMENT,
+                Nome TEXT NOT NULL,
+                Prezzo REAL NOT NULL,
+                CategoriaId INTEGER,
+                FOREIGN KEY(CategoriaId) REFERENCES Categorie(Id)
+                );
+                ";
+
+            // lancio il comando sulla connessione che ho appena creato
+            using (var command = new SqliteCommand(createProdottiTable, connection));
+
+            {
+                command.ExecuteNonQuery();
+            }
+
+            // seed dei dati per Categorie solo la prima volta
+            // seleziono il numero di categorie presenti nel db
+            var countCommand = new SqliteCommand("SELECT COUNT(*) FROM Categorie", connection);
+
+            // dato che count di sql è un valore numerico, posso usare execute scalar per ottenere il valore
+            // execute scalar ritorna un oggetto quindi faccio il casting a long per ottenere il valore numerico
+            var count = (long)countCommand.ExecuteScalar();
+
+            // se il count è uguale a zero, allora non ci sono categorie nel db e posso fare il seed dei dati
+            if (count == 0)
+        {
+            // sto inserendo più valori in una sola query quindi devo mettere le parentesi tonde intorno ai valori
+            var insertCategorie = @"
+                INSERT INTO Categorie (Nome) VALUES 
+                ('Pasta'),
+                ('Verdure'),
+                ('Condimenti');
+                ";
+
+            // lancio il comando sulla connessione che ho appena creato
+            using (var command = new SqliteCommand(insertCategorie, connection))
+            {
+                command.ExecuteNonQuery();
+            }
+
+            // Seed dei dati per Prodotti (solo se non esistono già)
     }
 }
