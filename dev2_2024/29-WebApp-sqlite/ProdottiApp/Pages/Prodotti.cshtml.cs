@@ -2,7 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Data.Sqlite;
 
-public class IndexModel : PageModel
+public class ProdottiModel : PageModel
 {
     // Creo una proprietà pubblica di tipo lista di prodotti view model
     public List<ProdottoViewModel> Prodotti { get; set; } = new List<ProdottoViewModel>();
