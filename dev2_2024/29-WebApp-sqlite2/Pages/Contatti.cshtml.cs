@@ -3,11 +3,11 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace _29_WebApp_sqlite2.Pages;
 
-public class PrivacyModel : PageModel
+public class ContattiModel : PageModel
 {
-    private readonly ILogger<PrivacyModel> _logger;
+    private readonly ILogger<ContattiModel> _logger;
 
-    public PrivacyModel(ILogger<PrivacyModel> logger)
+    public ContattiModel(ILogger<ContattiModel> logger)
     {
         _logger = logger;
     }
