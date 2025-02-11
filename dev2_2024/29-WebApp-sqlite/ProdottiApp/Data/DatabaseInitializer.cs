@@ -30,13 +30,13 @@ public class DatabaseInitializer
                 ";
 
             // lancio il comando sulla connessione che ho appena creato
-            using (var command = new SqliteCommand(createCategorieTable, connection));
+            using (var command = new SqliteCommand(createCategorieTable, connection))
 
             {
                 command.ExecuteNonQuery(); // eseguiamo il comando sql però non ritorna nulla, lo crea e basta
             }
 
-            var createCategorieTable = @"
+            var createProdottiTable = @"
             CREATE TABLE IF NOT EXISTS Prodotti
                 (
                 Id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -48,7 +48,7 @@ public class DatabaseInitializer
                 ";
 
             // lancio il comando sulla connessione che ho appena creato
-            using (var command = new SqliteCommand(createProdottiTable, connection));
+            using (var command = new SqliteCommand(createProdottiTable, connection))
 
             {
                 command.ExecuteNonQuery();
@@ -87,13 +87,13 @@ public class DatabaseInitializer
             {
                 var insertProdotti = @"
                 INSERT INTO Prodotti (Nome, Prezzo, CategoriaId) VALUES 
-                ('Trofie', 1,59, (SELECT Id FROM Categorie WHERE Nome = 'Pasta')),
-                ('Aglio', 0,59, (SELECT Id FROM Categorie WHERE Nome = 'Verdure')),
-                ('Pesto', 2,59, (SELECT Id FROM Categorie WHERE Nome = 'Condimenti')),
+                ('Trofie', 1.59, (SELECT Id FROM Categorie WHERE Nome = 'Pasta')),
+                ('Aglio', 0.59, (SELECT Id FROM Categorie WHERE Nome = 'Verdure')),
+                ('Pesto', 2.59, (SELECT Id FROM Categorie WHERE Nome = 'Condimenti'));
                 ";
 
                 // lancio il comando sulla connessione che ho appena creato
-                using (var command = new SqliteCommand(insertCategorie, connection))
+                using (var command = new SqliteCommand(insertProdotti, connection))
                 {
                     command.ExecuteNonQuery();
                 }
