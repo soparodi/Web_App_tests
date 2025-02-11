@@ -84,7 +84,7 @@ public class DatabaseInitializer
             count = (long)countCommand.ExecuteScalar();
 
             if (count == 0)
-        {
+            {
                 var insertProdotti = @"
                 INSERT INTO Prodotti (Nome, Prezzo, CategoriaId) VALUES 
                 ('Trofie', 1,59, (SELECT Id FROM Categorie WHERE Nome = 'Pasta')),
@@ -92,5 +92,21 @@ public class DatabaseInitializer
                 ('Pesto', 2,59, (SELECT Id FROM Categorie WHERE Nome = 'Condimenti')),
                 ";
 
+                // lancio il comando sulla connessione che ho appena creato
+                using (var command = new SqliteCommand(insertCategorie, connection))
+                {
+                    command.ExecuteNonQuery();
+                }
+            }
+        }
     }
+
+    // Metodo per ottenere la connessione al database in modo da poter essere utilizzato in altr parti del codice
+    // oltretutto database initializer è una classe statica quindi posso chiamare questo metodo senza creare un'istanza della classe
+
+    public static SqliteConnection GetConnection()
+    {
+        return new SqliteConnection(_connectionString); // in questo modo la connessione è creata ma non aperta però puo essere utilizzata in altri metodi
+    }
+
 }
