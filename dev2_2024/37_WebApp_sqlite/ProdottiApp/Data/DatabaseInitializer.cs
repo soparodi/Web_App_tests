@@ -33,7 +33,7 @@ public class DatabaseInitializer
             using (var command = new SqliteCommand(createCategorieTable, connection));
 
             {
-                command.ExecuteNonQuery();
+                command.ExecuteNonQuery(); // eseguiamo il comando sql però non ritorna nulla, lo crea e basta
             }
 
             var createCategorieTable = @"
