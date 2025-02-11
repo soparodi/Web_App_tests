@@ -1,4 +1,4 @@
-public class Prodotto
+public class ProdottoViewModel
 
 {
     public int Id { get; set; }

@@ -5,7 +5,7 @@ public class IndexModel : PageModel
 
 {
     // creo una proprietà pubblica di tipo lista di prodotti view model
-    public List<ProdottoViewModel> Prodotti { get; set; }; = new List<ProdottoViewModel>();
+    public List<ProdottoViewModel> Prodotti { get; set; } = new List<ProdottoViewModel>();
 
     public void Onget()
     {
