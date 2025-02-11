@@ -1,8 +1,27 @@
 @page
 @model ProdottiModel
 @{
-    ViewData["Title"] = "Prodotti";
+    ViewData["Title"] = "Elenco Prodotti";
 }
 
-<div class="text-center">
-</div>
+<h1>Elenco Prodotti</h1>
+
+<p>
+    <a asp-page="Create">Crea Nuovo Prodotto</a>
+</p>
+
+<form method="post">
+    <div class="form-group">
+        <label for="nome">Nome
+            <input type="text" class="form-control" name="nome" /></label>
+    </div>
+    <div class="form-group mb-3">
+        <label for="prezzo">Prezzo
+            <input type="text" class="form-control" name="prezzo" /></label>
+    </div>
+    <div class="form-group">
+        <label for="categoria">Categoria
+            <input type="text" class="form-control" name="categoria" /></label>
+    </div>
+    <button type="submit" class="btn btn-dark">Aggiungi</button>
+</form>
