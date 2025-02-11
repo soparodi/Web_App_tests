@@ -119,7 +119,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "36_WebAppProduct", "04 - Es
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "36_WebAppProduct", "36_WebAppProduct\36_WebAppProduct.csproj", "{D6BCA905-A6F7-4FA8-9067-E079215A7DE0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "37_WebApp_sqlite", "37_WebApp_sqlite\37_WebApp_sqlite.csproj", "{2E800363-82E6-4478-A749-B34CD908408B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "29-WebApp-sqlite", "29-WebApp-sqlite\29-WebApp-sqlite.csproj", "{0A5EB85C-82BF-476B-8EC2-9797285F5C42}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -346,6 +346,10 @@ Global
 		{2E800363-82E6-4478-A749-B34CD908408B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2E800363-82E6-4478-A749-B34CD908408B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2E800363-82E6-4478-A749-B34CD908408B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0A5EB85C-82BF-476B-8EC2-9797285F5C42}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0A5EB85C-82BF-476B-8EC2-9797285F5C42}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0A5EB85C-82BF-476B-8EC2-9797285F5C42}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0A5EB85C-82BF-476B-8EC2-9797285F5C42}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{1DC41327-AB17-4D6E-8E48-B902C663AAF5} = {A6E49C14-6254-4D59-BAE2-25C36A31B992}
