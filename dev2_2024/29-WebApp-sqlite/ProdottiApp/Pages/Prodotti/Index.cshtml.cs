@@ -24,5 +24,30 @@ public class IndexModel : PageModel
         SELECT p.Id, p.Nome, p.Prezzo, c.Nome as CategoriaNome
         FROM Prodotti.p
         LEFT JOIN Categorie c ON p.CategoriaId = c.Id";
+
+        // creo un comando sql per eseguire la query
+        using var command = new SqliteCommand(sql, connection);
+
+        // uso il reader come cursore per scorrere i dati restituiti dalla query
+        using var reader = command.ExecuteReader();
+
+        // leggo i record restituiti dalla query finché ce ne sono
+        while (reader.Read())
+        {
+            // aggiungo i dati del prodotto alla lista di prodotti
+            // uso prodotto view model perché voglio visualizzare il nome della categoria
+            Prodotti.Add(new ProdottoViewModel {
+            // faccio il get dei campi del record restituito dalla query
+            Id = reader.GetInt32(0),
+            Nome = reader.GetString(1),
+            Prezzo = reader.GetDouble(2),
+            // versione senza il controllo se la categoria è nulla
+            // CategoriaNome = reader.GetString(3)
+            // IsDBNull controlla se il campo è null e restituisce true se è null
+            // se è null restituisco l'elemento alla sinistra dei due punti
+            // se non è null restituisco l'elemento alla destra dei due punti
+            CategoriaNome = reader.IsDBNull(3)? "Nessuna" : reader.GetString(3)
+            });
+        }
     }
 }
