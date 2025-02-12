@@ -1,34 +1,29 @@
 @page
 @model ProdottiModel
 @{
-    ViewData["Title"] = "Elenco Prodotti";
+    ViewData["Title"] = "Prodotti";
 }
-
 <h2>@ViewData["Title"]</h2>
 
-<a asp-page="Prodotti" class="btn btn-success mb-3">Elenco Prodotti</a>
-
-<table class="table table-striped">
-    <thead>
-        <tr>
-            <th>Nome</th>
-            <th>Prezzo</th>
-            <th>Categoria</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var prodotto in Model.Prodotti)
+<div>
+    <div class="row">
+        @foreach (var p in Model.Prodotti)
         {
-            <tr>
-                <td>@prodotto.Nome</td>
-                <td>@prodotto.Prezzo.ToString("C")</td>
-                <td>@prodotto.CategoriaNome</td>
-            </tr>
+            <div class="col-md-4 d-flex my-4">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <h5 class="card-title text-dark">@p.Nome</h5>
+                        <p class="card-text text-success">@p.Prezzo</p>
+                    </div>
+                    <div class="card-footer">
+                        <button type="button" class="btn btn-sm btn-outline-secondary">
+                                <a asp-page="Details" asp-route-id="@p.Id"><div class="btn btn-success"><strong>Dettagli</strong></div></a>
+                                <a asp-page="Edit" asp-route-id="@p.Id"><div class="btn btn-success"><strong>Modifica</strong></div></a>
+                                <a asp-page="Delete" asp-route-id="@p.Id"><div class="btn btn-success"><strong>Elimina</strong></div></a>
+                        </button>
+                    </div>
+                </div>
+            </div>
         }
-    </tbody>
-</table>
-
-@if (!Model.Prodotti.Any())
-{
-    <p class="text-muted">Nessun prodotto disponibile.</p>
-}
+    </div>
+</div>
