@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc; // using in modo da usare IActionResult
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.Data.Sqlite;
+using Microsoft.Data.Sqlite; // si può usare anche System.Data.SQLite
 using Microsoft.AspNetCore.Mvc.Rendering; // using in modo da usare SelectListItem per fare il menu a tendina
 
 public class CreateModel : PageModel
@@ -9,6 +9,7 @@ public class CreateModel : PageModel
     [BindProperty] // attributo (decorator) bind property per collegare il metodo al form
     public Prodotto Prodotto { get; set; } // proprietà pubblica di tipo prodotto per contenere i dati del prodotto
 
+    // aggiungo logger se voglio fare un debug, non è strettamente necessario
     // creo una lista di select list item per contenere le categorie
     // select list item è un oggetto che rappresenta un elemento in una select list
     // serve per poi creare un menu a tendina in html
@@ -40,8 +41,9 @@ public class CreateModel : PageModel
         // la sql injection è un attacco informatico che sfrutta le query sql per inserire codice
         // in pratica dobbiamo separare i dati dalla quey sql e validarli (passarli come parametri una volta controllati)
         // si mette davanti al valore di parametro il carattere @
-        var sql = "INSERT INTO Prodotti (Nome, Prezzo, CategoriaId) VALUES (@nome, @prezzo,@categoriaId)";
-        
+        var sql = "INSERT INTO Prodotti (Nome, Prezzo, CategoriaId) VALUES (@nome, @prezzo,@categoriaId)"; // quelli dentro VALUES sono dei placeholder,
+                                                                                                           // potrei scrivere direttamente @categoria
+
         // creo un comando sql per eseguire la query sulla connessione che ho creato
         using var command = new SqliteCommand(sql, connection);
 
@@ -65,20 +67,22 @@ public class CreateModel : PageModel
 
         // creo la query sql per ottenere i dati delle categorie
         var sql = "SELECT Id, Nome FROM Categorie";
-        
-        // creo un comando per eseguire la query
-        using var command = new SqliteCommand(sql, connection);
-        // eseguo il comando e ottengo un reader che è un oggetto che mi permette di leggere i dati
-        using var reader = command.ExecuteReader();
 
-        // finché il reader ha elementi vado ad aggiungere il select list item di prima
-        while (reader.Read())
+        // creo un comando per eseguire la query
+        using var command = new SqliteCommand(sql, connection); // se usassi System dovrei scrivere SQLiteCommand
+        // eseguo il comando e ottengo un reader che è un oggetto che mi permette di leggere i dati
+        using (var reader = command.ExecuteReader()) ; // se metto tra parentesi il contenuto dello using, 
+                                                       // poi devo mettere tra {} il blocco di codice in cui lo usa
         {
-            CategorieSelectList.Add(new SelectListItem
+            // finché il reader ha elementi vado ad aggiungere il select list item di prima
+            while (reader.Read())
             {
-                Value = reader.GetInt32(0).ToString(), // converto in stringa l'id così da poterlo usare come valore
-                Text = reader.GetString(1)
-            });
+                CategorieSelectList.Add(new SelectListItem
+                {
+                    Value = reader.GetInt32(0).ToString(), // converto in stringa l'id così da poterlo usare come valore
+                    Text = reader.GetString(1)
+                });
+            }
         }
     }
 }
