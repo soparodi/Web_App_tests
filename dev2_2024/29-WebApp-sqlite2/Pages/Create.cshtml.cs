@@ -71,9 +71,7 @@ public class CreateModel : PageModel
         // creo un comando per eseguire la query
         using var command = new SqliteCommand(sql, connection); // se usassi System dovrei scrivere SQLiteCommand
         // eseguo il comando e ottengo un reader che è un oggetto che mi permette di leggere i dati
-        using var reader = command.ExecuteReader(); // se metto tra parentesi il contenuto dello using, 
-                                                    // poi devo mettere tra {} il blocco di codice in cui lo usa
-
+        using var reader = command.ExecuteReader();
         // finché il reader ha elementi vado ad aggiungere il select list item di prima
         while (reader.Read())
         {
