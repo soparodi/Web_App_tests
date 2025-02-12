@@ -1,0 +1,14 @@
+@page
+@model DeleteModel
+@{
+    ViewData["Title"] = "Elimina Prodotto";
+}
+<h2>@ViewData["Title"]</h2>
+
+<h4>Stai per eliminare "@Model.Prodotto.Nome"</dialog></h4>
+<div>
+    <form method="post">
+        <button type="submit" class="btn btn-success my-3">Elimina</button>
+    </form>
+    <a asp-page="/Prodotti" class="text-success">Torna a Prodotti</a>
+</div>
