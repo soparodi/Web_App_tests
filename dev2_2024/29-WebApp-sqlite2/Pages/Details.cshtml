@@ -1,0 +1,29 @@
+@page
+@model DetailsModel
+
+@{
+    ViewData["Title"] = "Dettagli Prodotto";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<div>
+    <div class="form-group">
+        <label for="id">Id</label>
+        <input type="text" class="form-control" name="id" value="@Model.Prodotto.Id" />
+    </div>
+    <div class="form-group">
+        <label for="nome">Nome</label>
+        <input type="text" class="form-control" name="nome" value="@Model.Prodotto.Nome" />
+    </div>
+    <div class="form-group">
+        <label for="prezzo">Prezzo</label>
+        <input type="text" class="form-control" name="prezzo" value="@Model.Prodotto.Prezzo" />
+    </div>
+    <div class="form-group">
+        <label for="categoria">Categoria</label>
+        <input type="text" class="form-control" name="categoria" value="@Model.CategoriaNome" />
+    </div>
+
+    <a asp-page="Prodotti" class="btn btn-success my-3">Indietro</a>
+</div>
