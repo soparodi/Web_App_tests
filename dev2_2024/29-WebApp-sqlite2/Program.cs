@@ -4,8 +4,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddRazorPages();
 
 var app = builder.Build();
-
-DatabaseInitializer.InitializeDatabase();
+DatabaseInitializer.InitializeDatabase(); // richiamamo qui il metodo, dopo il build dell'oggetto
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())

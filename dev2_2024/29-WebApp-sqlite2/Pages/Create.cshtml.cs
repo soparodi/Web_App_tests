@@ -6,11 +6,12 @@ using Microsoft.AspNetCore.Mvc.Rendering; // using in modo da usare SelectListIt
 public class CreateModel : PageModel
 
 {
-    [BindProperty] // attributo bind property per collegare il metodo al form
+    [BindProperty] // attributo (decorator) bind property per collegare il metodo al form
     public Prodotto Prodotto { get; set; } // proprietà pubblica di tipo prodotto per contenere i dati del prodotto
 
     // creo una lista di select list item per contenere le categorie
     // select list item è un oggetto che rappresenta un elemento in una select list
+    // serve per poi creare un menu a tendina in html
     public List<SelectListItem> CategorieSelectList { get; set; } = new List<SelectListItem>();
 
     public void OnGet()
@@ -35,7 +36,7 @@ public class CreateModel : PageModel
         connection.Open();
 
         // creo la query sql per inserire un nuovo prodotto usando i parametri
-        // i parametri servono per evitare sql injection
+        // i parametri servono per evitare sql injection - dove anziché scrivere il nome scrivono un pezzo di codice malevolo
         // la sql injection è un attacco informatico che sfrutta le query sql per inserire codice
         // in pratica dobbiamo separare i dati dalla quey sql e validarli (passarli come parametri una volta controllati)
         // si mette davanti al valore di parametro il carattere @
@@ -44,7 +45,7 @@ public class CreateModel : PageModel
         // creo un comando sql per eseguire la query sulla connessione che ho creato
         using var command = new SqliteCommand(sql, connection);
 
-        // aggiungo i parametri al comando con il metodo add with value che prende il nome del parametro e il valore
+        // aggiungo i parametri al comando con il metodo add with value (che evita l'injection) che prende il nome del parametro e il valore
         command.Parameters.AddWithValue("@nome", Prodotto.Nome);
         command.Parameters.AddWithValue("@prezzo", Prodotto.Prezzo);
         command.Parameters.AddWithValue("@categoriaId", Prodotto.CategoriaId);

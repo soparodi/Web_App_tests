@@ -5,7 +5,7 @@ using Microsoft.Data.Sqlite;
 public class ProdottiModel : PageModel
 {
     // Creo una proprietà pubblica di tipo lista di prodotti view model
-    public List<ProdottoViewModel> Prodotti { get; set; } = new List<ProdottoViewModel>();
+    public List<ProdottoViewModel> Prodotti { get; set; } = new List<ProdottoViewModel>(); // la inizializzo come una lista vuota
 
     public void OnGet()
     {
@@ -17,7 +17,7 @@ public class ProdottiModel : PageModel
         // Creo la query SQL per ottenere i dati dei prodotti
         // Voglio accedere al nome della categoria quindi devo fare una join tra la tabella prodotti e la tabella categorie
         // Uso JOIN per ottenere i prodotti con categoria
-        // Uso LEFT JOIN per ottenere i prodotti senza categoria
+        // Uso LEFT JOIN per ottenere anche i prodotti che non hanno categorie associate
         // Posso usare p e c come alias per le tabelle prodotti e categorie se voglio usare i nomi completi delle tabelle uso Prodotti e Categorie
         // Il vantaggio di usare gli alias è che dopo posso usare p e c per accedere ai campi delle tabelle
         var sql = @"
@@ -46,7 +46,7 @@ public class ProdottiModel : PageModel
                 // IsDBNull controlla se il campo è null e restituisce true se è null
                 // Se è null restituisco l'elemento alla sinistra dei due punti
                 // Se non è null restituisco l'elemento alla destra dei due punti
-                CategoriaNome = reader.IsDBNull(3) ? "Nessuna" : reader.GetString(3)
+                CategoriaNome = reader.IsDBNull(3) ? "Nessuna" : reader.GetString(3) // evitiamo le {} e quindi if, usando un operatore ternario
             });
         }
     }

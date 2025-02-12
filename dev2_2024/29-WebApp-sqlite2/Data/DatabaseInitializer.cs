@@ -14,14 +14,15 @@ public class DatabaseInitializer
     public static void InitializeDatabase()
     {
         using var connection = new SqliteConnection(_connectionString); // creiamo una connessione al db tramite using per garantire che venga chiusa correttamente
-        connection.Open(); // apriamo la connessione
+        {
+            connection.Open(); // apriamo la connessione
 
-        // gestisco l'eccezione se il db esiste già in sql
+            // gestisco l'eccezione se il db esiste già in sql
 
-        // creazione tabella Categorie
+            // creazione tabella Categorie
 
-                                       // se non metto la @ non posso andare a capo
-        var createCategorieTable = @"
+            // se non metto la @ non posso andare a capo
+            var createCategorieTable = @"
             CREATE TABLE IF NOT EXISTS Categorie
                 (
                 Id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -30,8 +31,8 @@ public class DatabaseInitializer
                 ";
 
             // lancio il comando sulla connessione che ho appena creato
-            using (var command = new SqliteCommand(createCategorieTable, connection))
-
+            using (var command = new SqliteCommand(createCategorieTable, connection)) // lo using usa quello che gli passiamo in argomento nel blocco di codice tra {} 
+                                                                                      // questo per la tabella categorie, quello prima per la connessione
             {
                 command.ExecuteNonQuery(); // eseguiamo il comando sql però non ritorna nulla, lo crea e basta
             }
@@ -64,43 +65,43 @@ public class DatabaseInitializer
 
             // se il count è uguale a zero, allora non ci sono categorie nel db e posso fare il seed dei dati
             if (count == 0)
-        {
-            // sto inserendo più valori in una sola query quindi devo mettere le parentesi tonde intorno ai valori
-            var insertCategorie = @"
+            {
+                // sto inserendo più valori in una sola query quindi devo mettere le parentesi tonde intorno ai valori
+                var insertCategorie = @"
                 INSERT INTO Categorie (Nome) VALUES 
                 ('Pasta'),
                 ('Verdure'),
                 ('Condimenti');
                 ";
 
-            // lancio il comando sulla connessione che ho appena creato
-            using (var command = new SqliteCommand(insertCategorie, connection))
-            {
-                command.ExecuteNonQuery();
-            }
+                // lancio il comando sulla connessione che ho appena creato
+                using (var command = new SqliteCommand(insertCategorie, connection))
+                {
+                    command.ExecuteNonQuery();
+                }
 
-            // Seed dei dati per Prodotti (solo se non esistono già)
-            countCommand = new SqliteCommand("SELECT COUNT(*) FROM Prodotti", connection);
-            count = (long)countCommand.ExecuteScalar();
+                // Seed dei dati per Prodotti (solo se non esistono già)
+                countCommand = new SqliteCommand("SELECT COUNT(*) FROM Prodotti", connection);
+                count = (long)countCommand.ExecuteScalar();
 
-            if (count == 0)
-            {
-                var insertProdotti = @"
+                if (count == 0)
+                {
+                    var insertProdotti = @"
                 INSERT INTO Prodotti (Nome, Prezzo, CategoriaId) VALUES 
                 ('Trofie', 1.59, (SELECT Id FROM Categorie WHERE Nome = 'Pasta')),
                 ('Aglio', 0.59, (SELECT Id FROM Categorie WHERE Nome = 'Verdure')),
                 ('Pesto', 2.59, (SELECT Id FROM Categorie WHERE Nome = 'Condimenti'));
                 ";
 
-                // lancio il comando sulla connessione che ho appena creato
-                using (var command = new SqliteCommand(insertProdotti, connection))
-                {
-                    command.ExecuteNonQuery();
+                    // lancio il comando sulla connessione che ho appena creato
+                    using (var command = new SqliteCommand(insertProdotti, connection))
+                    {
+                        command.ExecuteNonQuery();
+                    }
                 }
             }
         }
     }
-
     // Metodo per ottenere la connessione al database in modo da poter essere utilizzato in altr parti del codice
     // oltretutto database initializer è una classe statica quindi posso chiamare questo metodo senza creare un'istanza della classe
 
@@ -108,5 +109,4 @@ public class DatabaseInitializer
     {
         return new SqliteConnection(_connectionString); // in questo modo la connessione è creata ma non aperta però puo essere utilizzata in altri metodi
     }
-
 }
