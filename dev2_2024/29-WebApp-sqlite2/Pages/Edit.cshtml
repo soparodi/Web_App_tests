@@ -6,13 +6,13 @@
 
 @section Scripts
 {
-<partial name="_ValidationScriptsPartial" />
+    <partial name="_ValidationScriptsPartial" />
 }
 
 <h2>@ViewData["Title"]</h2>
 
 <form method="post">
-
+    <input type="hidden" asp-for="Prodotto.Id"> <!-- rimandargli indietro -->
     <div class="form-group">
         <label asp-for="Prodotto.Nome"></label>
         <input type="text" asp-for="Prodotto.Nome" class="form-control" />
@@ -36,4 +36,3 @@
     <button type="submit" class="btn btn-success my-4">Salva</button>
     <a asp-page="Prodotti" class="btn btn-success my-4">Annulla</a>
 </form>
-
