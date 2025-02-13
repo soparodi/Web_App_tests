@@ -1,0 +1,28 @@
+@page
+@model CategorieModel
+@{
+    ViewData["Title"] = "Categorie";
+}
+<h2>@ViewData["Title"]</h2>
+
+<div>
+    <div class="row">
+        @foreach (var c in Model.Categorie)
+        {
+            <div class="col-md-4 d-flex my-4">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <h5 class="card-title text-dark">@c.Nome</h5>
+                    </div>
+                    <div class="card-footer">
+                        <button type="button" class="btn btn-sm btn-outline-secondary">
+                            <a asp-page="Details" asp-route-id="@c.Id"><div class="btn btn-success"><strong>Dettagli</strong></div></a>
+                            <a asp-page="Edit" asp-route-id="@c.Id"><div class="btn btn-success"><strong>Modifica</strong></div></a>
+                            <a asp-page="Delete" asp-route-id="@c.Id"><div class="btn btn-success"><strong>Elimina</strong></div></a>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
