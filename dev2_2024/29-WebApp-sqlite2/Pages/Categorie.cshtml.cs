@@ -9,7 +9,7 @@ public class CategorieModel : PageModel
 
     public void OnGet()
     {
-        // Otteniamo la connessione al database
+        // Apro la connessione al database
         using var connection = DatabaseInitializer.GetConnection();
         connection.Open();
 
@@ -19,13 +19,13 @@ public class CategorieModel : PageModel
         using var command = new SqliteCommand(sql, connection);
         using var reader = command.ExecuteReader();
 
-        // Iteriamo sui risultati della query e popolo la lista
+        // Itero sui risultati della query e popolo la lista
         while (reader.Read())
         {
             Categorie.Add(new CategoriaViewModel
             {
-                Id = reader.GetInt32(0),
-                Nome = reader.GetString(1)
+                CategoriaId = reader.GetInt32(0),
+                CategoriaNome = reader.GetString(1)
             });
         }
     }
