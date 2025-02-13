@@ -1,0 +1,47 @@
+@page
+@model SearchModel
+@{
+    ViewData["Title"] = "Cerca Prodotto";
+}
+
+@section Scripts
+{
+    <partial name="_ValidationScriptsPartial" />
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<form method="get" class="mb-2">
+    <div class="input-group">
+        <input type="text" name="q" value="@Model.SearchTerm" placeholder="Inserisci il nome del prodotto:"
+            class="form-control" />
+        <button type="submit" class="btn btn-success mx-2 my-4">Cerca</button>
+        <a asp-page="Prodotti" class="btn btn-success mx-2 my-4">Annulla</a>
+    </div>
+
+    @if (Model.Prodotto?.Any() == true)
+    {
+        <div>
+            <div class="row">
+                @foreach (var prodotto in Model.Prodotto)
+                {
+                    <div class="col-md-4 d-flex my-4">
+                        <div class="card h-100">
+                            <div class="card-body">
+                                <h5 class="card-title text-dark">@prodotto.Nome</h5>
+                                <p class="card-text text-success">@prodotto.Prezzo</p>
+                            </div>
+                            <div class="card-footer">
+                                <button type="button" class="btn btn-sm btn-outline-secondary">
+                                    <a asp-page="Details" asp-route-id="@prodotto.Id">
+                                        <div class="btn btn-success"><strong>Dettagli</strong></div>
+                                    </a>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    }
+</form>
