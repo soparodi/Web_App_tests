@@ -16,8 +16,3 @@ public class Prodotto
     [Required(ErrorMessage = "La categoria è obbligatoria.")]
     public int CategoriaId { get; set; }
 }
-
-@section Scripts
-{
-<partial name="_ValidationScriptsPartial" />
-}

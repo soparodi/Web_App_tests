@@ -1,8 +1,12 @@
 @page
 @model CreateModel
-
 @{
     ViewData["Title"] = "Crea Prodotto";
+}
+
+@section Scripts
+{
+<partial name="_ValidationScriptsPartial" />
 }
 
 <h2>@ViewData["Title"]</h2>
@@ -12,11 +16,13 @@
     <div class="form-group">
         <label asp-for="Prodotto.Nome"></label>
         <input type="text" asp-for="Prodotto.Nome" class="form-control" />
+        <span asp-validation-for="Prodotto.Nome" class="text-danger"></span>
     </div>
 
     <div class="form-group">
         <label asp-for="Prodotto.Prezzo"></label>
         <input type="text" asp-for="Prodotto.Prezzo" class="form-control" />
+        <span asp-validation-for="Prodotto.Prezzo" class="text-danger"></span>
     </div>
 
     <div class="form-group">
@@ -24,8 +30,10 @@
         <select asp-for="Prodotto.CategoriaId" class="form-control" asp-items="Model.CategorieSelectList">
             <option value="">Seleziona Categoria</option>
         </select>
+        <span asp-validation-for="Prodotto.CategoriaId" class="text-danger"></span>
     </div>
 
     <button type="submit" class="btn btn-success my-4">Salva</button>
     <a asp-page="Prodotti" class="btn btn-success my-4">Annulla</a>
 </form>
+
