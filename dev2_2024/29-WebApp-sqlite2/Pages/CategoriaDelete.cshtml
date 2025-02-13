@@ -1,0 +1,14 @@
+@page
+@model CategoriaDeleteModel
+@{
+    ViewData["Title"] = "Elimina Categoria";
+}
+<h2>@ViewData["Title"]</h2>
+
+<h4>Stai per eliminare "@Model.Categoria.CategoriaNome"</dialog></h4>
+<div>
+    <form method="post">
+        <button type="submit" class="btn btn-success my-3">Elimina</button>
+    </form>
+    <a asp-page="/Categorie" class="text-success">Torna a Categorie</a>
+</div>
