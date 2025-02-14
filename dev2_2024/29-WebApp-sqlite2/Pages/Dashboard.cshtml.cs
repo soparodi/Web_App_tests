@@ -48,3 +48,5 @@ public class DashboardModel : PageModel
         }
     }
 }
+
+// errore: le partial non vanno fatte come le alre pagine (con backend e frontend), ma solo in html
