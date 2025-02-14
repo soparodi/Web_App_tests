@@ -5,9 +5,9 @@ using Microsoft.AspNetCore.Mvc.Rendering; // using in modo da usare SelectListIt
 
 public class DashboardModel : PageModel
 {
-    public List<string> Categorie { get; set; } = new();
+    public List<string> Categorie { get; set; } = new List<string>(); // Inizializzo la lista
     public string CategoriaSelezionata { get; set; } = string.Empty;
-    public List<ProdottoViewModel> ProdottiPerCategoria { get; set; } = new();
+    public List<ProdottoViewModel> ProdottiPerCategoria { get; set; } = new List<ProdottoViewModel>(); // Inizializzo la lista
 
     public void OnGet(string? categoria)
     {

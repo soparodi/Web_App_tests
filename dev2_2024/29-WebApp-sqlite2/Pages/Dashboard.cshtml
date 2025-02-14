@@ -4,7 +4,7 @@
     ViewData["Title"] = "Dashboard";
 }
 
-<h2>Dashboard</h2>
+<h2>@ViewData["Title"]</h2>
 
 <div class="row">
     <div class="col-md-4">
@@ -30,6 +30,6 @@
                 }
             </select>
         </form>
-        @await Html.PartialAsync("_ProdottiCategoria", Model.ProdottiPerCategoria)
+        @await Html.PartialAsync("_ProdottiPerCategoria", Model.ProdottiPerCategoria)
     </div>
 </div>
