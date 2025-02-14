@@ -1,12 +1,8 @@
-@page
-@model ProdottiCostosiModel
+<h3>Prodotti Più Costosi</h3>
 
-<ul class="list-group">
-    @foreach (var prodotto in Model.Prodotti)
-    {
-        <li class="list-group-item d-flex justify-content-between">
-            <span>@prodotto.Nome</span>
-            <strong>@prodotto.Prezzo €</strong>
-        </li>
-    }
-</ul>
+@foreach (var prodotto in Model)
+{
+    <strong class="fs-6" style="text-decoration: underline;">@prodotto.Nome</strong>
+    <p class="fs-6" style=" display: inline;">@prodotto.Prezzo.ToString("F2") €</p>
+    <p class="fs-6">@prodotto.CategoriaNome</p>
+}

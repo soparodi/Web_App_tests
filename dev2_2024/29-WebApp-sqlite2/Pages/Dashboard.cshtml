@@ -1,37 +1,19 @@
 @page
-@model DashboardModel
+@model Dashboard
 @{
     ViewData["Title"] = "Dashboard";
 }
-
-<h2>@ViewData["Title"]</h2>
-
-<div class="row">
-    <div class="col-md-4">
-        <h4>Prodotti più costosi</h4>
-        @await Html.PartialAsync("_ProdottiCostosi")
-    </div>
-
-    <div class="col-md-4">
-        <h4>Prodotti più recenti</h4>
-        @await Html.PartialAsync("_ProdottiRecenti")
-    </div>
-
-    <div class="col-md-4">
-        <h4>Prodotti per Categoria</h4>
-        <form method="get">
-            <select name="categoria" class="form-select">
-                @*la variabile isSelected verifica se la categoria corrente è la stessa della categoria selezionata (Model.CategoriaSelezionata == categoria)
-                  se isSelected è true l'attributo selected viene aggiunto alla option, se è false l'attributo non viene usato*@
-                @foreach (var categoria in Model.Categorie)
-                {
-                    <option value="@categoria" selected="@(Model.CategoriaSelezionata == categoria ? "selected" : null)">
-                        @categoria
-                    </option>
-                }
-            </select>
-            <button type="submit" class="btn btn-success">Filtra</button>
-        </form>
-        @await Html.PartialAsync("_ProdottiPerCategoria", Model.ProdottiPerCategoria)
+<h1>@ViewData["Title"]</h1>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-4">
+            <partial name="_ProdottiCostosi" model="Model.ProdottiCostosi" />
+        </div> 
+        <div class="col-4">
+            <partial name="_ProdottiRecenti" model="Model.ProdottiRecenti" />
+        </div>
+        <div class="col-4"> 
+            <partial name="_ProdottiPerCategoria" model="Model.ProdottiPerCategoria" />
+        </div>
     </div>
 </div>

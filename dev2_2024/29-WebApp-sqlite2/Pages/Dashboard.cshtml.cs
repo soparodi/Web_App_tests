@@ -1,52 +1,76 @@
-using Microsoft.AspNetCore.Mvc; // using in modo da usare IActionResult
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Data.Sqlite; // si può usare anche System.Data.SQLite
-using Microsoft.AspNetCore.Mvc.Rendering; // using in modo da usare SelectListItem per fare il menu a tendina
+using Microsoft.AspNetCore.Mvc.Rendering;
 
-public class DashboardModel : PageModel
+public class Dashboard : PageModel
 {
-    public List<string> Categorie { get; set; } = new List<string>(); // inizializzo la lista
-    public string CategoriaSelezionata { get; set; } = string.Empty; // inizializzo CategoriaSelezionata con una stringa vuota al posto di null
-    public List<ProdottoViewModel> ProdottiPerCategoria { get; set; } = new List<ProdottoViewModel>(); // inizializzo la lista
+    public List<ProdottoViewModel>? ProdottiCostosi { get; set; } = new();
+    public List<ProdottoViewModel>? ProdottiRecenti { get; set; } = new();
+    public List<ProdottoViewModel>? ProdottiPerCategoria { get; set; } = new();
 
-    public void OnGet(string? categoria) // indico che la variabile può essere nulla, così che sia valida anche se non le passiamo niente
+    public void OnGet()
     {
-        using var connection = DatabaseInitializer.GetConnection();
-        connection.Open();
+        // carico i prodotti
+        var prodCostosi = @"
+                SELECT p.Id, p.Nome, p.Prezzo, c.Nome as Categoria
+                FROM Prodotti p
+                LEFT JOIN Categorie c ON p.CategoriaId = c.Id
+                ORDER BY p.Prezzo DESC LIMIT 5";
 
-        // recupero le categorie
-        var getCategorie = "SELECT Nome FROM Categorie;";
-        using var command = new SqliteCommand(getCategorie, connection);
-        using var reader = command.ExecuteReader();
+        ProdottiCostosi = ExecuteQuery(prodCostosi);
 
-        while (reader.Read())
+        var prodRecenti = @"
+                SELECT p.Id, p.Nome, p.Prezzo, c.Nome as Categoria
+                FROM Prodotti p
+                LEFT JOIN Categorie c ON p.CategoriaId = c.Id
+                ORDER BY p.Id DESC LIMIT 5";
+
+        ProdottiRecenti = ExecuteQuery(prodRecenti);
+
+        var prodCategoria = @"
+                SELECT p.Id, p.Nome, p.Prezzo, c.Nome as Categoria
+                FROM Prodotti p
+                LEFT JOIN Categorie c ON p.CategoriaId = c.Id
+                WHERE p.CategoriaId = 2 LIMIT 5"; // il 2 è l'id della categoria di prodotti che voglio visualizzare
+
+        ProdottiPerCategoria = ExecuteQuery(prodCategoria);
+
+    }
+
+    public List<ProdottoViewModel> ExecuteQuery(string query)
+    {
+        List<ProdottoViewModel> ProdottiFiltrati = new List<ProdottoViewModel>();
+        using (var connection = DatabaseInitializer.GetConnection())
         {
-            Categorie.Add(reader.GetString(0));
-        }
+            // apriamo la connessione
+            connection.Open();
 
-        // se è stata selezionata una categoria, carica i prodotti corrispondenti
-        if (!string.IsNullOrEmpty(categoria))
-        {
-            CategoriaSelezionata = categoria;
-            var getProdottiCategoria = @"
-            SELECT Id, Nome, Prezzo FROM Prodotti 
-            WHERE CategoriaId = (SELECT Id FROM Categorie WHERE Nome = @categoria)";
+            // Occorre creare una query di join con una LEFT JOIN tra la tabella Prodotti e la tabella Categorie
+            // Usiamo gli alias in SQLite per rendere più leggibile il codice. Useremo p per Prodotti e c per Categorie
 
-            using var prodCommand = new SqliteCommand(getProdottiCategoria, connection);
-            prodCommand.Parameters.AddWithValue("@categoria", categoria);
-            using var prodReader = prodCommand.ExecuteReader();
-
-            while (prodReader.Read())
+            // Creiamo il comando
+            using (var command = new SqliteCommand(query, connection))
             {
-                ProdottiPerCategoria.Add(new ProdottoViewModel
+                // Eseguiamo il comando
+                using (var reader = command.ExecuteReader())
                 {
-                    Id = prodReader.GetInt32(0),
-                    Nome = prodReader.GetString(1),
-                    Prezzo = prodReader.GetDouble(2)
-                });
+                    // Leggiamo i dati
+                    while (reader.Read())
+                    {
+                        // Creiamo un nuovo prodotto e lo aggiungiamo alla lista
+                        ProdottiFiltrati?.Add(new ProdottoViewModel
+                        {
+                            Id = reader.GetInt32(0),
+                            Nome = reader.GetString(1),
+                            Prezzo = reader.GetDouble(2),
+                            // se la categoria è nulla, restituiamo "Nessuna categoria"
+                            CategoriaNome = reader.IsDBNull(3) ? "Nessuna categoria" : reader.GetString(3)
+                        });
+                    }
+                }
             }
-        }
+        };
+        return ProdottiFiltrati;
     }
 }
-
-// errore: le partial non vanno fatte come le alre pagine (con backend e frontend), ma solo in html (vedi "_ProductSearch.cshtml")

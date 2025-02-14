@@ -1,15 +1,19 @@
-@if (Model.Count == 0)
-{
-    <p>Nessun prodotto disponibile in questa categoria.</p>
-}
-else
-{
-    <ul class="list-group">
+@{
+        string categoria = null;
+
+        //ciclo per estrapolare nome categoria 
+        foreach (var p in Model)
+        {
+                categoria = p.CategoriaNome;
+        }
+
+        <h3>Prodotti in @categoria</h3>
+
         @foreach (var prodotto in Model)
         {
-            <li class="list-group-item">
-                @prodotto.Nome - <strong>@prodotto.Prezzo €</strong>
-            </li>
+
+                <strong class="fs-6" style="text-decoration: underline;">@prodotto.Nome</strong>
+                <p class="fs-6" style=" display: inline;">@prodotto.Prezzo.ToString("F2") €</p>
+                <p class="fs-6">@prodotto.CategoriaNome</p>
         }
-    </ul>
 }
