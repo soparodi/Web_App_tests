@@ -5,16 +5,16 @@ using Microsoft.AspNetCore.Mvc.Rendering; // using in modo da usare SelectListIt
 
 public class DashboardModel : PageModel
 {
-    public List<string> Categorie { get; set; } = new List<string>(); // Inizializzo la lista
-    public string CategoriaSelezionata { get; set; } = string.Empty;
-    public List<ProdottoViewModel> ProdottiPerCategoria { get; set; } = new List<ProdottoViewModel>(); // Inizializzo la lista
+    public List<string> Categorie { get; set; } = new List<string>(); // inizializzo la lista
+    public string CategoriaSelezionata { get; set; } = string.Empty; // inizializzo CategoriaSelezionata con una stringa vuota al posto di null
+    public List<ProdottoViewModel> ProdottiPerCategoria { get; set; } = new List<ProdottoViewModel>(); // inizializzo la lista
 
-    public void OnGet(string? categoria)
+    public void OnGet(string? categoria) // indico che la variabile può essere nulla, così che sia valida anche se non le passiamo niente
     {
         using var connection = DatabaseInitializer.GetConnection();
         connection.Open();
 
-        // Recupera le categorie
+        // recupero le categorie
         var getCategorie = "SELECT Nome FROM Categorie;";
         using var command = new SqliteCommand(getCategorie, connection);
         using var reader = command.ExecuteReader();
@@ -24,7 +24,7 @@ public class DashboardModel : PageModel
             Categorie.Add(reader.GetString(0));
         }
 
-        // Se è stata selezionata una categoria, carica i prodotti corrispondenti
+        // se è stata selezionata una categoria, carica i prodotti corrispondenti
         if (!string.IsNullOrEmpty(categoria))
         {
             CategoriaSelezionata = categoria;
