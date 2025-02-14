@@ -1,0 +1,11 @@
+@page
+@model ProdottiRecentiModel
+
+<ul class="list-group">
+    @foreach (var prodotto in Model.Prodotti)
+    {
+        <li class="list-group-item">
+            @prodotto.Nome - <strong>@prodotto.Prezzo €</strong>
+        </li>
+    }
+</ul>

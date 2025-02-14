@@ -1,0 +1,12 @@
+@page
+@model ProdottiCostosiModel
+
+<ul class="list-group">
+    @foreach (var prodotto in Model.Prodotti)
+    {
+        <li class="list-group-item d-flex justify-content-between">
+            <span>@prodotto.Nome</span>
+            <strong>@prodotto.Prezzo €</strong>
+        </li>
+    }
+</ul>

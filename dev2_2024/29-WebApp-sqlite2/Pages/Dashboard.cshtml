@@ -1,0 +1,35 @@
+@page
+@model DashboardModel
+@{
+    ViewData["Title"] = "Dashboard";
+}
+
+<h2>Dashboard</h2>
+
+<div class="row">
+    <div class="col-md-4">
+        <h4>Prodotti più costosi</h4>
+        @await Html.PartialAsync("_ProdottiCostosi")
+    </div>
+
+    <div class="col-md-4">
+        <h4>Prodotti più recenti</h4>
+        @await Html.PartialAsync("_ProdottiRecenti")
+    </div>
+
+    <div class="col-md-4">
+        <h4>Prodotti per Categoria</h4>
+        <form method="get">
+            <select name="categoria" class="form-select" onchange="this.form.submit()">
+                <option value="">Seleziona</option>
+                @foreach (var categoria in Model.Categorie)
+                {
+                    <option value="@categoria" selected="@(Model.CategoriaSelezionata == categoria ? "selected" : null)">
+                        @categoria
+                    </option>
+                }
+            </select>
+        </form>
+        @await Html.PartialAsync("_ProdottiCategoria", Model.ProdottiPerCategoria)
+    </div>
+</div>
