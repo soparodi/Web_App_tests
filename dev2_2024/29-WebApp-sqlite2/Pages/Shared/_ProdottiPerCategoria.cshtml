@@ -12,8 +12,8 @@
         @foreach (var prodotto in Model)
         {
 
-                <strong class="fs-6" style="text-decoration: underline;">@prodotto.Nome</strong>
-                <p class="fs-6" style=" display: inline;">@prodotto.Prezzo.ToString("F2") €</p>
+                <strong class="fs-6" style="text-decoration: underline;">@prodotto.Nome</strong> // underline = nome sottolineato
+                <p class="fs-6" style=" display: inline;">@prodotto.Prezzo.ToString("F2") €</p> // F2 = formatto il prezzo a due decimali
                 <p class="fs-6">@prodotto.CategoriaNome</p>
         }
 }

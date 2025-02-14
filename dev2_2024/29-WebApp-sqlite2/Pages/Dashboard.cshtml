@@ -5,7 +5,7 @@
 }
 <h1>@ViewData["Title"]</h1>
 <div class="container-fluid">
-    <div class="row">
+    <div class="row"> @*divido il contenuto in 3 colonne (col-4) e ogni colonna include una partial view con il modello corrispondente*@
         <div class="col-4">
             <partial name="_ProdottiCostosi" model="Model.ProdottiCostosi" />
         </div> 
