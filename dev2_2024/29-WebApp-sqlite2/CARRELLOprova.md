@@ -1,4 +1,6 @@
-`DatabaseInitializer.cs`:
+# CARRELLO
+
+## Situazione iniziale di `DatabaseInitializer.cs`:
 
 ```csharp
 
@@ -119,7 +121,7 @@ public class DatabaseInitializer
 
 ```
 
-#### Aggiunta del Carrello:
+## Modifica di `DatabaseInitializer.cs` con aggiunta del Carrello:
 
 ```csharp
 
@@ -242,7 +244,7 @@ public class DatabaseInitializer
     - Modifico `DatabaseInitializer.cs` per aggiungere la tabella Carrello e fare in modo che il carrello sia sempre vuoto all'avvio:
     
     ```csharp
-    
+
     // Aggiungo la tabella Carrello
     var createCarrelloTable = @"
     CREATE TABLE IF NOT EXISTS Carrello
