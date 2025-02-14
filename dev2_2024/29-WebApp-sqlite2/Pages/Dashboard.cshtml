@@ -20,8 +20,7 @@
     <div class="col-md-4">
         <h4>Prodotti per Categoria</h4>
         <form method="get">
-            <select name="categoria" class="form-select" onchange="this.form.submit()">
-                <option value="">Seleziona</option>
+            <select name="categoria" class="form-select">
                 @foreach (var categoria in Model.Categorie)
                 {
                     <option value="@categoria" selected="@(Model.CategoriaSelezionata == categoria ? "selected" : null)">
@@ -29,6 +28,7 @@
                     </option>
                 }
             </select>
+            <button type="submit" class="btn btn-primary">Filtra</button>
         </form>
         @await Html.PartialAsync("_ProdottiPerCategoria", Model.ProdottiPerCategoria)
     </div>
