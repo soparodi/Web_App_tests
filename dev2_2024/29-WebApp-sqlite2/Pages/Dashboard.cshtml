@@ -21,6 +21,8 @@
         <h4>Prodotti per Categoria</h4>
         <form method="get">
             <select name="categoria" class="form-select">
+                @*la variabile isSelected verifica se la categoria corrente è la stessa della categoria selezionata (Model.CategoriaSelezionata == categoria)
+                  se isSelected è true l'attributo selected viene aggiunto alla option, se è false l'attributo non viene usato*@
                 @foreach (var categoria in Model.Categorie)
                 {
                     <option value="@categoria" selected="@(Model.CategoriaSelezionata == categoria ? "selected" : null)">
