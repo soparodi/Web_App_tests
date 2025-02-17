@@ -25,17 +25,17 @@ public class EditModel : PageModel
             // Query per ottenere il prodotto con l'ID passato
             var sql = "SELECT Id, Nome, Prezzo, CategoriaId FROM Prodotti WHERE Id = @id";
 
-            var prodotti = UtilityDB.ExecuteReader(sql, command =>
-            {
-                // Aggiungi il parametro @id al comando
-                command.Parameters.AddWithValue("@id", id);
-            },
-            reader => new Prodotto
+            var prodotti = UtilityDB.ExecuteReader(sql, reader => new Prodotto
             {
                 Id = reader.GetInt32(0),
                 Nome = reader.GetString(1),
                 Prezzo = reader.GetDouble(2),
                 CategoriaId = reader.IsDBNull(3) ? 0 : reader.GetInt32(3)
+            },
+            command =>
+            {
+                // Aggiungi il parametro @id al comando
+                command.Parameters.AddWithValue("@id", id);
             });
 
             // Se non ci sono prodotti trovati, reindirizza alla lista
@@ -90,7 +90,6 @@ public class EditModel : PageModel
         {
             _logger.LogError(ex, "Errore durante l'aggiornamento del prodotto con ID {Id}", Prodotto.Id);
             SimpleLogger.Log(ex);
-            ModelState.AddModelError("", "Si è verificato un errore durante la modifica del prodotto.");
             CaricaCategorie();  // Ricarica le categorie in caso di errore
             return Page();
         }
@@ -126,11 +125,3 @@ public class EditModel : PageModel
         }
     }
 }
-
-// ! PROBLEMI: 
-
-// ! 'SqliteDataReader' non contiene una definizione di 'Parameters' e non è stato trovato alcun metodo di estensione accessibile 'Parameters'
-// ! che accetta un primo argomento di tipo 'SqliteDataReader'.
-// ! Probabilmente manca una direttiva using o un riferimento all'assembly.
-
-// ! Non è possibile convertire in modo implicito il tipo 'T' in 'Prodotto'

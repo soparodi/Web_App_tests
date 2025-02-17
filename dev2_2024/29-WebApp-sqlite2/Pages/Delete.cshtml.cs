@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Mvc; // using in modo da usare IActionResult
 using Microsoft.AspNetCore.Mvc.RazorPages;
-// using Microsoft.Extensions.Logging;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.Data.Sqlite;
 
 public class DeleteModel : PageModel
 {
