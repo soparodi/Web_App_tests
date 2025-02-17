@@ -16,7 +16,7 @@ public static class GestioneCategorie
             // leggere la tabella categorie
             var sql = @" SELECT * FROM Categorie";
 
-            using (var command = new SQLiteCommand(sql, connection))
+            using (var command = new SqliteCommand(sql, connection))
             {
                 // mentre il reader legge
                 using (var reader = command.ExecuteReader())

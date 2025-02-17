@@ -7,9 +7,9 @@ public class Dashboard : PageModel
     private readonly ILogger<Dashboard> _logger;
 
     // Liste che conterranno i dati da mostrare nelle partial views
-    public List<ProdottoViewModel>? ProdottiPiuCostosi { get; set; } = new();
+    public List<ProdottoViewModel>? ProdottiCostosi { get; set; } = new();
     public List<ProdottoViewModel>? ProdottiRecenti { get; set; } = new();
-    public List<ProdottoViewModel>? ProdottiCategoria { get; set; } = new();
+    public List<ProdottoViewModel>? ProdottiPerCategoria { get; set; } = new();
 
     // Costruttore per iniettare il logger
     public Dashboard(ILogger<Dashboard> logger)
@@ -29,7 +29,7 @@ public class Dashboard : PageModel
                 LEFT JOIN Categorie c ON p.CategoriaId = c.Id
                 ORDER BY p.Prezzo DESC LIMIT 5";
 
-            ProdottiPiuCostosi = ExecuteQuery(queryCostosi);
+            ProdottiCostosi = ExecuteQuery(queryCostosi);
         }
         catch (Exception ex)
         {
@@ -57,13 +57,13 @@ public class Dashboard : PageModel
         try
         {
             // Query per ottenere i prodotti di una categoria specifica
-            var queryCategoria = @"
+            var queryPerCategoria = @"
                 SELECT p.Id, p.Nome, p.Prezzo, c.Nome as Categoria
                 FROM Prodotti p
                 LEFT JOIN Categorie c ON p.CategoriaId = c.Id
                 WHERE p.CategoriaId = 2 LIMIT 5"; // 2 è l'id della categoria per cui voglio filtrare
 
-            ProdottiCategoria = ExecuteQuery(queryCategoria);
+            ProdottiPerCategoria = ExecuteQuery(queryPerCategoria);
         }
         catch (Exception ex)
         {

@@ -1,33 +1,33 @@
-using Microsoft.AspNetCore.Mvc; // using in modo da usare IActionResult
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.AspNetCore.Mvc.Rendering; // using in modo da usare SelectListItem per fare il menu a tendina
-// using Microsoft.Extensions.Logging;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.Data.Sqlite;
 
 public class EditModel : PageModel
 {
     private readonly ILogger<EditModel> _logger;
 
     [BindProperty]
-    public Prodotto Prodotto { get; set; } = new(); // proprietà pubblica per contenere i dati del prodotto
+    public Prodotto Prodotto { get; set; } = new();
 
     public List<SelectListItem> CategorieSelectList { get; set; } = new();
 
-    // Costruttore per iniettare il logger (opzionale per debug)
     public EditModel(ILogger<EditModel> logger)
     {
         _logger = logger;
     }
 
-    // passo l'id come parametro perché voglio modificare un prodotto esistente sul quale ho cliccato in precedenza
+    // Metodo GET per recuperare il prodotto
     public IActionResult OnGet(int id)
     {
         try
         {
-            // Query per ottenere il prodotto con l'id passato come parametro
+            // Query per ottenere il prodotto con l'ID passato
             var sql = "SELECT Id, Nome, Prezzo, CategoriaId FROM Prodotti WHERE Id = @id";
 
-            var prodotto = UtilityDB.ExecuteReader(sql, command =>
+            var prodotti = UtilityDB.ExecuteReader(sql, command =>
             {
+                // Aggiungi il parametro @id al comando
                 command.Parameters.AddWithValue("@id", id);
             },
             reader => new Prodotto
@@ -38,74 +38,91 @@ public class EditModel : PageModel
                 CategoriaId = reader.IsDBNull(3) ? 0 : reader.GetInt32(3)
             });
 
-            if (prodotto.Count == 0)
+            // Se non ci sono prodotti trovati, reindirizza alla lista
+            if (prodotti.Count == 0)
             {
-                return NotFound();
+                return RedirectToPage("Prodotti");
             }
 
-            Prodotto = prodotto[0]; // Assegno il primo (e unico) risultato alla proprietà
+            // Assegna il primo prodotto trovato
+            Prodotto = prodotti[0];
 
-            CaricaCategorie(); // carico le categorie per la select list
+            // Carica le categorie per il menu a tendina
+            CaricaCategorie();
+
             return Page();
         }
         catch (Exception ex)
         {
             _logger.LogError(ex, "Errore durante il recupero del prodotto con ID {Id}", id);
             SimpleLogger.Log(ex);
-            return StatusCode(500, "Errore interno del server");
+            return RedirectToPage("Prodotti");
         }
     }
 
+    // Metodo POST per aggiornare il prodotto
     public IActionResult OnPost()
     {
         if (!ModelState.IsValid)
         {
-            CaricaCategorie();
+            CaricaCategorie();  // Ricarica le categorie se la validazione fallisce
             return Page();
         }
 
         try
         {
-            // Query per aggiornare il prodotto nel database
+            // Esegui l'aggiornamento del prodotto nel database
             var sql = "UPDATE Prodotti SET Nome = @nome, Prezzo = @prezzo, CategoriaId = @categoriaId WHERE Id = @id";
 
             UtilityDB.ExecuteNonQuery(sql, command =>
             {
+                // Aggiungi i parametri al comando SQL
                 command.Parameters.AddWithValue("@nome", Prodotto.Nome);
                 command.Parameters.AddWithValue("@prezzo", Prodotto.Prezzo);
                 command.Parameters.AddWithValue("@categoriaId", Prodotto.CategoriaId);
                 command.Parameters.AddWithValue("@id", Prodotto.Id);
             });
 
-            return RedirectToPage("Prodotti"); // reindirizza alla pagina dell'elenco prodotti
+            // Reindirizza alla lista dei prodotti dopo l'aggiornamento
+            return RedirectToPage("Prodotti");
         }
         catch (Exception ex)
         {
             _logger.LogError(ex, "Errore durante l'aggiornamento del prodotto con ID {Id}", Prodotto.Id);
             SimpleLogger.Log(ex);
             ModelState.AddModelError("", "Si è verificato un errore durante la modifica del prodotto.");
-            CaricaCategorie();
+            CaricaCategorie();  // Ricarica le categorie in caso di errore
             return Page();
         }
     }
 
-    private void CaricaCategorie()
+    // Metodo per caricare le categorie nel menu a tendina
+    public void CaricaCategorie()
     {
-        try
+        using (var connection = DatabaseInitializer.GetConnection())
         {
-            var sql = "SELECT Id, Nome FROM Categorie";
+            // aprire la connessione 
+            connection.Open();
 
-            CategorieSelectList = UtilityDB.ExecuteReader(sql, reader => new SelectListItem
+            // leggere la tabella categorie
+            var sql = @" SELECT * FROM Categorie";
+
+            using (var command = new SqliteCommand(sql, connection))
             {
-                Value = reader.GetInt32(0).ToString(), // Converto in stringa l'ID per usarlo nel menu a tendina
-                Text = reader.GetString(1)
-            });
-        }
-        catch (Exception ex)
-        {
-            _logger.LogError(ex, "Errore durante il caricamento delle categorie");
-            SimpleLogger.Log(ex);
-            ModelState.AddModelError("", "Impossibile caricare le categorie.");
+                // mentre il reader legge
+                using (var reader = command.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        // aggiungi nuovo oggetto SelectListItem con Value e Text
+                        CategorieSelectList.Add(new SelectListItem
+                        {
+                            Value = reader.GetInt32(0).ToString(),
+                            Text = reader.GetString(1)
+                        });
+                    }
+                }
+            }
         }
     }
 }
