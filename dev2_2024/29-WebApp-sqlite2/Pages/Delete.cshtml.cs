@@ -1,55 +1,76 @@
 using Microsoft.AspNetCore.Mvc; // using in modo da usare IActionResult
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.Data.Sqlite; // si può usare anche System.Data.SQLite
-using Microsoft.AspNetCore.Mvc.Rendering; // using in modo da usare SelectListItem per fare il menu a tendina
+using Microsoft.Extensions.Logging;
+using System;
 
 public class DeleteModel : PageModel
 {
+    private readonly ILogger<DeleteModel> _logger;
+
     public ProdottoViewModel Prodotto { get; set; }
+
+    // Costruttore per iniettare il logger (opzionale per debug)
+    public DeleteModel(ILogger<DeleteModel> logger)
+    {
+        _logger = logger;
+    }
+
     public IActionResult OnGet(int id)
     {
-        using var connection = DatabaseInitializer.GetConnection();
-        connection.Open();
-
-        var sql = @"
-        SELECT p.Id, p.Nome, p.Prezzo, c.Nome as CategoriaNome
-        FROM Prodotti p
-        LEFT JOIN Categorie c ON p.CategoriaId = c.Id
-        WHERE p.Id = @id";
-
-        using var command = new SqliteCommand(sql, connection);
-        command.Parameters.AddWithValue("@id", id);
-        // eseguo il comando e ottengo un reader che è un oggetto che mi permette di leggere i dati
-        using var reader = command.ExecuteReader();
-
-        // se il reader ha dati
-        if (reader.Read())
+        try
         {
-            Prodotto = new ProdottoViewModel
+            var sql = @"
+            SELECT p.Id, p.Nome, p.Prezzo, c.Nome as CategoriaNome
+            FROM Prodotti p
+            LEFT JOIN Categorie c ON p.CategoriaId = c.Id
+            WHERE p.Id = @id";
+
+            var result = UtilityDB.ExecuteReader(sql, command =>
+            {
+                command.Parameters.AddWithValue("@id", id);
+            },
+            reader => new ProdottoViewModel
             {
                 Id = reader.GetInt32(0),
                 Nome = reader.GetString(1),
                 Prezzo = reader.GetDouble(2),
                 CategoriaNome = reader.IsDBNull(3) ? "Nessuna" : reader.GetString(3)
-            };
+            });
+
+            if (result.Count == 0)
+            {
+                return RedirectToPage("Prodotti"); // Se il prodotto non esiste, torniamo alla lista
+            }
+
+            Prodotto = result[0]; // Assegno il primo (e unico) risultato alla proprietà
+            return Page();
         }
-        else
+        catch (Exception ex)
         {
-            return NotFound();
+            _logger.LogError(ex, "Errore durante il recupero del prodotto con ID {Id}", id);
+            SimpleLogger.Log(ex);
+            return RedirectToPage("Prodotti"); // In caso di errore, reindirizziamo alla lista prodotti
         }
-        return Page();
     }
 
     public IActionResult OnPost(int id)
     {
-        using var connection = DatabaseInitializer.GetConnection();
-        connection.Open();
+        try
+        {
+            var sql = "DELETE FROM Prodotti WHERE Id = @id";
 
-        var sql = "DELETE FROM Prodotti WHERE Id = @id";
-        using var command = new SqliteCommand(sql, connection);
-        command.Parameters.AddWithValue("@id", id);
+            UtilityDB.ExecuteNonQuery(sql, command =>
+            {
+                command.Parameters.AddWithValue("@id", id);
+            });
 
-        command.ExecuteNonQuery();
-        return RedirectToPage("Prodotti");
+            return RedirectToPage("Prodotti");
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError(ex, "Errore durante l'eliminazione del prodotto con ID {Id}", id);
+            SimpleLogger.Log(ex);
+            return RedirectToPage("Prodotti"); // In caso di errore, torniamo alla lista
+        }
     }
 }
