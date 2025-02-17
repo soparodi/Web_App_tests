@@ -1,5 +1,6 @@
-using System.Data.SqlClient;
-using System.Data.SQLite;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.Data.Sqlite;
 
 public static class GestioneCategorie
 {
