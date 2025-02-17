@@ -126,3 +126,11 @@ public class EditModel : PageModel
         }
     }
 }
+
+// ! PROBLEMI: 
+
+// ! 'SqliteDataReader' non contiene una definizione di 'Parameters' e non è stato trovato alcun metodo di estensione accessibile 'Parameters'
+// ! che accetta un primo argomento di tipo 'SqliteDataReader'.
+// ! Probabilmente manca una direttiva using o un riferimento all'assembly.
+
+// ! Non è possibile convertire in modo implicito il tipo 'T' in 'Prodotto'
