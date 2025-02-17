@@ -1,7 +1,6 @@
 using Microsoft.AspNetCore.Mvc; // using in modo da usare IActionResult
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.Extensions.Logging;
-using System;
+// using Microsoft.Extensions.Logging;
 
 public class DeleteModel : PageModel
 {
@@ -9,7 +8,7 @@ public class DeleteModel : PageModel
 
     public ProdottoViewModel Prodotto { get; set; }
 
-    // Costruttore per iniettare il logger (opzionale per debug)
+    // Costruttore per iniettare il logger
     public DeleteModel(ILogger<DeleteModel> logger)
     {
         _logger = logger;
