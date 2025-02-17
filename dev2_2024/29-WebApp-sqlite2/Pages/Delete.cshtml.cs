@@ -6,7 +6,11 @@ public class DeleteModel : PageModel
 {
     private readonly ILogger<DeleteModel> _logger;
 
-    public ProdottoViewModel Prodotto { get; set; }
+    [BindProperty]
+    public ProdottoViewModel Prodotto { get; set; } = new ProdottoViewModel();
+
+    [BindProperty(SupportsGet = true)]
+    public int Id { get; set; }
 
     // Costruttore per iniettare il logger
     public DeleteModel(ILogger<DeleteModel> logger)
@@ -18,56 +22,54 @@ public class DeleteModel : PageModel
     {
         try
         {
-            var sql = @"
-            SELECT p.Id, p.Nome, p.Prezzo, c.Nome as CategoriaNome
-            FROM Prodotti p
-            LEFT JOIN Categorie c ON p.CategoriaId = c.Id
-            WHERE p.Id = @id";
+            var sql = "SELECT Id, Nome, Prezzo, CategoriaId FROM Prodotti WHERE id = @id";
 
-            var result = UtilityDB.ExecuteReader(sql, command =>
-            {
-                command.Parameters.AddWithValue("@id", id);
-            },
-            reader => new ProdottoViewModel
+            var prodotti = UtilityDB.ExecuteReader(sql, reader => new ProdottoViewModel
             {
                 Id = reader.GetInt32(0),
                 Nome = reader.GetString(1),
                 Prezzo = reader.GetDouble(2),
-                CategoriaNome = reader.IsDBNull(3) ? "Nessuna" : reader.GetString(3)
+                CategoriaNome = reader.IsDBNull(3) ? "Nessuna categoria" : reader.GetString(3)
+            },
+            command =>
+            {
+                command.Parameters.AddWithValue("@id", id);
             });
 
-            if (result.Count == 0)
+            if (prodotti.Count == 0)
             {
                 return RedirectToPage("Prodotti"); // Se il prodotto non esiste, torniamo alla lista
             }
 
-            Prodotto = result[0]; // Assegno il primo (e unico) risultato alla proprietà
+            Prodotto = prodotti[0]; // Assegno il primo (e unico) risultato alla proprietà
+            Id = Prodotto.Id; // Associo l'ID al BindProperty
+
             return Page();
         }
         catch (Exception ex)
         {
             _logger.LogError(ex, "Errore durante il recupero del prodotto con ID {Id}", id);
             SimpleLogger.Log(ex);
-            return RedirectToPage("Prodotti"); // In caso di errore, reindirizziamo alla lista prodotti
+            return RedirectToPage("Prodotti"); // In caso di errore, torniamo alla lista prodotti
         }
     }
 
-    public IActionResult OnPost(int id)
+    public IActionResult OnPost()
     {
         try
         {
-            var sql = "DELETE FROM Prodotti WHERE Id = @id";
+            var sql = "DELETE FROM Prodotti WHERE id = @id";
 
             UtilityDB.ExecuteNonQuery(sql, command =>
             {
-                command.Parameters.AddWithValue("@id", id);
+                command.Parameters.AddWithValue("@id", Id);
             });
 
             return RedirectToPage("Prodotti");
         }
         catch (Exception ex)
         {
-            _logger.LogError(ex, "Errore durante l'eliminazione del prodotto con ID {Id}", id);
+            _logger.LogError(ex, "Errore durante l'eliminazione del prodotto con ID {Id}", Id);
             SimpleLogger.Log(ex);
             return RedirectToPage("Prodotti"); // In caso di errore, torniamo alla lista
         }

@@ -3,9 +3,9 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering; // using in modo da usare SelectListItem per fare il menu a tendina
 // using Microsoft.Extensions.Logging;
 
-public class AggiungiProdottoModel : PageModel
+public class CreateModel : PageModel
 {
-    private readonly ILogger<AggiungiProdottoModel> _logger;
+    private readonly ILogger<CreateModel> _logger;
 
     [BindProperty] // attributo (decorator) per collegare il metodo al form
     public Prodotto Prodotto { get; set; } = new(); // proprietà pubblica di tipo prodotto per contenere i dati del prodotto
@@ -15,7 +15,7 @@ public class AggiungiProdottoModel : PageModel
     public List<SelectListItem> Categorie { get; set; } = new();
 
     // Costruttore per iniettare il logger (opzionale per debug)
-    public AggiungiProdottoModel(ILogger<AggiungiProdottoModel> logger)
+    public CreateModel(ILogger<CreateModel> logger)
     {
         _logger = logger;
     }
