@@ -14,7 +14,7 @@ public static class UtilityDB
         using var connection = DatabaseInitializer.GetConnection();
         connection.Open();
 
-        using var command = new SQLiteCommand(sql, connection);
+        using var command = new SqliteCommand(sql, connection);
         setupParameters?.Invoke(command);
 
         return command.ExecuteNonQuery();
@@ -32,7 +32,7 @@ public static class UtilityDB
         using var connection = DatabaseInitializer.GetConnection();
         connection.Open();
 
-        using var command = new SQLiteCommand(sql, connection);
+        using var command = new SqliteCommand(sql, connection);
         setupParameters?.Invoke(command);
 
         var result = command.ExecuteScalar();
