@@ -1,6 +1,8 @@
 # I comandi di rete
 ## Il comando `netstat`
 
+### 01_Client
+
 ```csharp
 
 using System.Net.Sockets; // using che da le funzionalità per la comunicazione in rete
@@ -38,7 +40,7 @@ public class Client
 
 ```
 
-# 02_Server
+### 02_Server
 
 ```csharp
 
