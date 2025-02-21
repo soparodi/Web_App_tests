@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Sofia Parodi\\Documents\\Web_App_tests\\16_01_chat-server\\16_01_chat-server.csproj",
+      "projectUniqueName": "c:\\Users\\Sofia Parodi\\Documents\\Web_App_tests\\16_01_Client\\16_01_chat-server.csproj",
       "projectName": "16_01_chat-server",
-      "projectPath": "C:\\Users\\Sofia Parodi\\Documents\\Web_App_tests\\16_01_chat-server\\16_01_chat-server.csproj",
+      "projectPath": "c:\\Users\\Sofia Parodi\\Documents\\Web_App_tests\\16_01_Client\\16_01_chat-server.csproj",
       "packagesPath": "C:\\Users\\Sofia Parodi\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Sofia Parodi\\Documents\\Web_App_tests\\16_01_chat-server\\obj\\",
+      "outputPath": "c:\\Users\\Sofia Parodi\\Documents\\Web_App_tests\\16_01_Client\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Sofia Parodi\\AppData\\Roaming\\NuGet\\NuGet.Config"

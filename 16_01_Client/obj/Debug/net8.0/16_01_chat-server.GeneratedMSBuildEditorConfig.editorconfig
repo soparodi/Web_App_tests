@@ -8,6 +8,6 @@ build_property.PlatformNeutralAssembly =
 build_property.EnforceExtendedAnalyzerRules = 
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = _16_01_chat_server
-build_property.ProjectDir = c:\Users\Sofia Parodi\Documents\Web_App_tests\16_01_chat-server\
+build_property.ProjectDir = c:\Users\Sofia Parodi\Documents\Web_App_tests\16_01_Client\
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 
