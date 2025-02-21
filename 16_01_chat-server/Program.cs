@@ -1,4 +1,4 @@
-﻿using System.Net.Sockets; // using che da le funzionalità per la comunicazione in rete
+﻿/*using System.Net.Sockets; // using che da le funzionalità per la comunicazione in rete
 using System.Text; // using che dà le funzionalità per la gestione delle stringhe che vengono inviate e ricevute
 
 public class Client
@@ -29,4 +29,4 @@ public class Client
         string serverIP = Console.ReadLine(); // Legge l'IP del server inserito dall'utente
         client.StartClient(serverIP, 3000); // Avvia il client con l'IP del server e la porta 3000
     }
-}
+}*/
