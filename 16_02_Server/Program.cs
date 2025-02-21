@@ -1,57 +1,92 @@
-﻿using System.Net;
-using System.Net.Sockets; // using che dà le funzionalità per la comunicazione in rete
-using System.Text; // using che dà le funzionalità per la gestione delle stringhe che vengono inviate e ricevute
-using System.Threading; // using che dà le funzionalità per la gestione del thread, cioè dei flussi di esecuzione separati
+﻿using System;
+using System.Collections.Generic;
+using System.Net;
+using System.Net.Sockets;
+using System.Text;
+using System.Threading;
 
 public class Server
 {
-    private TcpListener listener; // Oggetto che rappresenta un server TCP
+    private TcpListener listener;
+    private List<TcpClient> clients = new List<TcpClient>(); // Mantiene una lista dei client connessi
+    private object clientLock = new object(); // Oggetto per la sincronizzazione
+
     public void StartServer(int port)
     {
-        listener = new TcpListener(IPAddress.Any, port); // IPAddress.Any indica che il server accetta connessioni su tutte le interfacce di rete
-        listener.Start(); // Avvia il server
+        listener = new TcpListener(IPAddress.Any, port);
+        listener.Start();
+        Console.WriteLine($"Server avviato sulla porta {port}...");
 
-        while(true)
+        while (true)
         {
-            TcpClient client = listener.AcceptTcpClient(); // Accetta una connessione da un client e restituisce un oggetto TcpClient che rappresenta il client connesso
-            Thread clientThread = new Thread(new ParameterizedThreadStart(HandleClient)); // Il delegato è new ParameterizedThreadStart, new è il costruttore del delegato che ha come argomento HandleCliente, crea un nuovo thread (= canale di trasmissione) per gestire il client connesso - metodo che come argomento un metodo che ha come argomento un metodo (matrioska)
-            clientThread.Start(client); // Avvia il thread per gestire il client connesso in questo caso thread
+            TcpClient client = listener.AcceptTcpClient();
+            lock (clientLock)
+            {
+                clients.Add(client); // Aggiunge il client alla lista in modo sicuro
+            }
+            Thread clientThread = new Thread(HandleClient);
+            clientThread.Start(client);
         }
     }
 
-    private void HandleClient(object obj) // accetta solo argomenti di tipo object
+    private void HandleClient(object obj)
     {
-        TcpClient client = (TcpClient)obj; // Converte l'oggetto, passato come argomento, in un oggetto TcpClient
-        NetworkStream stream = client.GetStream(); // Ottiene il flusso di dati tra il client e il server networkstream
-        byte[] buffer = new byte[1024]; // gestisce un messaggio di 1024 caratteri - 1 byte = 8 bit
+        TcpClient client = (TcpClient)obj;
+        NetworkStream stream = client.GetStream();
+        byte[] buffer = new byte[1024];
 
-        int byteCount;
-
-        while ((byteCount = stream.Read(buffer, 0, buffer.Length)) != 0)
+        try
         {
-            string message = Encoding.ASCII.GetString(buffer, 0, byteCount); // Converte i byte ricevuti in una stringa
-            Console.WriteLine($"Messaggio ricevuto: {message}");
-            Broadcast(message); // reinviamo il messaggio a tutti i client connessi
+            int byteCount;
+            while ((byteCount = stream.Read(buffer, 0, buffer.Length)) != 0)
+            {
+                string message = Encoding.ASCII.GetString(buffer, 0, byteCount);
+                Console.WriteLine($"Messaggio ricevuto: {message}");
+                Broadcast(message, client);
+            }
         }
-        client.Close();
-    }
-
-    // Il metodo Broadcast si occupa di inviare il messaggio a tutti i client connessi
-    private void Broadcast(string message)
-    {
-        foreach (TcpClient client in clients) // Per ogni client connesso
+        catch (Exception ex)
         {
-            NetworkStream stream = client.GetStream(); // Ottiene il flusso di dati tra il client e il server
-            byte[] buffer = Encoding.ASCII.GetBytes(message); // Converte la stringa in un array di byte
-            stream.Write(buffer, 0, buffer.Length); // Invia il messaggio al client
+            Console.WriteLine($"Errore con il client: {ex.Message}");
+        }
+        finally
+        {
+            lock (clientLock)
+            {
+                clients.Remove(client); // Rimuove il client dalla lista quando si disconnette
+            }
+            client.Close();
         }
     }
 
-    public static void Main(string[] args) // Metodo Main che viene eseguito all'avvio del programma
+    private void Broadcast(string message, TcpClient sender)
     {
-        Server server = new Server(); // Crea un'istanza della classe Server
-        server.StartServer(3000); // Avvia il server sulla porta 3000
+        byte[] buffer = Encoding.ASCII.GetBytes(message);
+
+        lock (clientLock)
+        {
+            foreach (TcpClient client in clients)
+            {
+                if (client != sender) // Non inviamo il messaggio al mittente
+                {
+                    try
+                    {
+                        NetworkStream stream = client.GetStream();
+                        stream.Write(buffer, 0, buffer.Length);
+                    }
+                    catch
+                    {
+                        // Se il client non è più valido, lo rimuoviamo
+                        clients.Remove(client);
+                    }
+                }
+            }
+        }
     }
 
-    private List<TcpClient> clients = new List<TcpClient>(); // Lista dei client connessi
+    public static void Main(string[] args)
+    {
+        Server server = new Server();
+        server.StartServer(3000);
+    }
 }
