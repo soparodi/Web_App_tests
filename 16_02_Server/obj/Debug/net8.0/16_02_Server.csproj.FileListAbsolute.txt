@@ -1,0 +1,15 @@
+c:\Users\Sofia Parodi\Documents\Web_App_tests\16_02_Server\obj\Debug\net8.0\16_02_Server.GeneratedMSBuildEditorConfig.editorconfig
+c:\Users\Sofia Parodi\Documents\Web_App_tests\16_02_Server\obj\Debug\net8.0\16_02_Server.AssemblyInfoInputs.cache
+c:\Users\Sofia Parodi\Documents\Web_App_tests\16_02_Server\obj\Debug\net8.0\16_02_Server.AssemblyInfo.cs
+c:\Users\Sofia Parodi\Documents\Web_App_tests\16_02_Server\obj\Debug\net8.0\16_02_Server.csproj.CoreCompileInputs.cache
+c:\Users\Sofia Parodi\Documents\Web_App_tests\16_02_Server\obj\Debug\net8.0\16_02_Server.sourcelink.json
+c:\Users\Sofia Parodi\Documents\Web_App_tests\16_02_Server\bin\Debug\net8.0\16_02_Server.exe
+c:\Users\Sofia Parodi\Documents\Web_App_tests\16_02_Server\bin\Debug\net8.0\16_02_Server.deps.json
+c:\Users\Sofia Parodi\Documents\Web_App_tests\16_02_Server\bin\Debug\net8.0\16_02_Server.runtimeconfig.json
+c:\Users\Sofia Parodi\Documents\Web_App_tests\16_02_Server\bin\Debug\net8.0\16_02_Server.dll
+c:\Users\Sofia Parodi\Documents\Web_App_tests\16_02_Server\bin\Debug\net8.0\16_02_Server.pdb
+c:\Users\Sofia Parodi\Documents\Web_App_tests\16_02_Server\obj\Debug\net8.0\16_02_Server.dll
+c:\Users\Sofia Parodi\Documents\Web_App_tests\16_02_Server\obj\Debug\net8.0\refint\16_02_Server.dll
+c:\Users\Sofia Parodi\Documents\Web_App_tests\16_02_Server\obj\Debug\net8.0\16_02_Server.pdb
+c:\Users\Sofia Parodi\Documents\Web_App_tests\16_02_Server\obj\Debug\net8.0\16_02_Server.genruntimeconfig.cache
+c:\Users\Sofia Parodi\Documents\Web_App_tests\16_02_Server\obj\Debug\net8.0\ref\16_02_Server.dll
