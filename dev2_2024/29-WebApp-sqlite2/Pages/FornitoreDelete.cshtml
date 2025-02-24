@@ -1,0 +1,14 @@
+@page
+@model FornitoreDeleteModel
+@{
+    ViewData["Title"] = "Elimina Fornitore";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<div>
+    <form method="post">
+        <button type="submit" class="btn btn-success my-4">Elimina</button>
+    </form>
+    <a asp-page="/Fornitori" class="btn btn-success my-4">Torna ai Fornitori</a>
+</div>

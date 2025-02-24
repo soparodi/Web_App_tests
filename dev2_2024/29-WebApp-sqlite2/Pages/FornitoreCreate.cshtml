@@ -1,0 +1,23 @@
+@page
+@model FornitoreCreateModel
+@{
+    ViewData["Title"] = "Aggiungi Fornitore";
+}
+
+@section Scripts
+{
+    <partial name="_ValidationScriptsPartial" />
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<form method="post">
+    <div class="form-group">
+        <label asp-for="Fornitore.Nome"></label>
+        <input type="text" asp-for="Fornitore.Nome" class="form-control" required />
+        <span asp-validation-for="Fornitore.Nome" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-success my-4">Salva</button>
+    <a asp-page="Fornitori" class="btn btn-success my-4">Annulla</a>
+</form>

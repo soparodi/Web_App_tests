@@ -15,4 +15,6 @@ public class Prodotto
 
     [Required(ErrorMessage = "La categoria è obbligatoria.")]
     public int CategoriaId { get; set; }
+
+    public int FornitoreId { get; set; } // aggiunto l'Id del fornitore associato ai prodotti
 }

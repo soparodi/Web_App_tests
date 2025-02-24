@@ -1,112 +1,104 @@
-// file DatabaseInitializer.cs
-
-// questo file gestisce la connessione al database ed inizializza i dati tramite seeding
-
-using Microsoft.Data.Sqlite;
+using Microsoft.Data.Sqlite; // Importa il namespace per lavorare con SQLite
 
 public class DatabaseInitializer
-
 {
-    // Il database verrà creato nella cartella dell'app
+    // Stringa di connessione al database SQLite, specifica il file in cui sarà salvato
+    private static string _connectionString = "Data Source=prodottiapp.db"; 
 
-    private static string _connectionString = "Data Source=prodottiapp.db"; // utilizzeremo _connectionString in un metodo in modo da ottenere la connessione al db
-
+    // Inizializza il database creando le tabelle necessarie e facendo il seeding dei dati iniziali
     public static void InitializeDatabase()
     {
-        using var connection = new SqliteConnection(_connectionString); // creiamo una connessione al db tramite using per garantire che venga chiusa correttamente
+        // Crea una connessione al database e la chiude automaticamente dopo l'uso
+        using var connection = new SqliteConnection(_connectionString);
+        connection.Open(); // Apre la connessione al database
+
+        // Creazione tabella Categorie se non esiste
+        var createCategorieTable = @"
+        CREATE TABLE IF NOT EXISTS Categorie (
+            Id INTEGER PRIMARY KEY AUTOINCREMENT,
+            Nome TEXT NOT NULL
+        );";
+        ExecuteNonQuery(connection, createCategorieTable);
+
+        // Creazione tabella Fornitori se non esiste
+        var createFornitoriTable = @"
+        CREATE TABLE IF NOT EXISTS Fornitori (
+            Id INTEGER PRIMARY KEY AUTOINCREMENT,
+            Nome TEXT NOT NULL
+        );";
+        ExecuteNonQuery(connection, createFornitoriTable);
+
+        // Creazione tabella Prodotti se non esiste
+        var createProdottiTable = @"
+        CREATE TABLE IF NOT EXISTS Prodotti (
+            Id INTEGER PRIMARY KEY AUTOINCREMENT,
+            Nome TEXT NOT NULL,
+            Prezzo REAL NOT NULL,
+            CategoriaId INTEGER,
+            FornitoreId INTEGER,
+            FOREIGN KEY(CategoriaId) REFERENCES Categorie(Id),
+            FOREIGN KEY(FornitoreId) REFERENCES Fornitori(Id)
+        );";
+        ExecuteNonQuery(connection, createProdottiTable);
+
+        // Inserisce i dati iniziali se necessario
+        SeedData(connection);
+    }
+
+    // Inserisce dati predefiniti nelle tabelle Categorie, Fornitori e Prodotti se queste sono vuote.
+    private static void SeedData(SqliteConnection connection)
+    {
+        // Seeding Categorie: Inserisce i dati solo se la tabella è vuota
+        if (GetTableCount(connection, "Categorie") == 0)
         {
-            connection.Open(); // apriamo la connessione
+            var insertCategorie = @"
+            INSERT INTO Categorie (Nome) VALUES 
+            ('Pasta'),
+            ('Verdure'),
+            ('Condimenti');";
+            ExecuteNonQuery(connection, insertCategorie);
+        }
 
-            // gestisco l'eccezione se il db esiste già in sql
+        // Seeding Fornitori: Inserisce i dati solo se la tabella è vuota
+        if (GetTableCount(connection, "Fornitori") == 0)
+        {
+            var insertFornitori = @"
+            INSERT INTO Fornitori (Nome) VALUES
+            ('Michele'),
+            ('Giovanni'),
+            ('Oreste');";
+            ExecuteNonQuery(connection, insertFornitori);
+        }
 
-            // creazione tabella Categorie
-
-            // se non metto la @ non posso andare a capo
-            var createCategorieTable = @"
-            CREATE TABLE IF NOT EXISTS Categorie
-                (
-                Id INTEGER PRIMARY KEY AUTOINCREMENT,
-                Nome TEXT NOT NULL
-                );
-                ";
-
-            // lancio il comando sulla connessione che ho appena creato
-            using (var command = new SqliteCommand(createCategorieTable, connection)) // lo using usa quello che gli passiamo in argomento nel blocco di codice tra {} 
-                                                                                      // questo per la tabella categorie, quello prima per la connessione
-            {
-                command.ExecuteNonQuery(); // eseguiamo il comando sql però non ritorna nulla, lo crea e basta
-            }
-
-            var createProdottiTable = @"
-            CREATE TABLE IF NOT EXISTS Prodotti
-                (
-                Id INTEGER PRIMARY KEY AUTOINCREMENT,
-                Nome TEXT NOT NULL,
-                Prezzo REAL NOT NULL,
-                CategoriaId INTEGER,
-                FOREIGN KEY(CategoriaId) REFERENCES Categorie(Id)
-                );
-                ";
-
-            // lancio il comando sulla connessione che ho appena creato
-            using (var command = new SqliteCommand(createProdottiTable, connection))
-
-            {
-                command.ExecuteNonQuery();
-            }
-
-            // seed dei dati per Categorie solo la prima volta
-            // seleziono il numero di categorie presenti nel db
-            var countCommand = new SqliteCommand("SELECT COUNT(*) FROM Categorie", connection);
-
-            // dato che count di sql è un valore numerico, posso usare execute scalar per ottenere il valore
-            // execute scalar ritorna un oggetto quindi faccio il casting a long per ottenere il valore numerico
-            var count = (long)countCommand.ExecuteScalar();
-
-            // se il count è uguale a zero, allora non ci sono categorie nel db e posso fare il seed dei dati
-            if (count == 0)
-            {
-                // sto inserendo più valori in una sola query quindi devo mettere le parentesi tonde intorno ai valori
-                var insertCategorie = @"
-                INSERT INTO Categorie (Nome) VALUES 
-                ('Pasta'),
-                ('Verdure'),
-                ('Condimenti');
-                ";
-
-                // lancio il comando sulla connessione che ho appena creato
-                using (var command = new SqliteCommand(insertCategorie, connection))
-                {
-                    command.ExecuteNonQuery();
-                }
-
-                // Seed dei dati per Prodotti (solo se non esistono già)
-                countCommand = new SqliteCommand("SELECT COUNT(*) FROM Prodotti", connection);
-                count = (long)countCommand.ExecuteScalar();
-
-                if (count == 0)
-                {
-                    var insertProdotti = @"
-                INSERT INTO Prodotti (Nome, Prezzo, CategoriaId) VALUES 
-                ('Trofie', 1.59, (SELECT Id FROM Categorie WHERE Nome = 'Pasta')),
-                ('Aglio', 0.59, (SELECT Id FROM Categorie WHERE Nome = 'Verdure')),
-                ('Pesto', 2.59, (SELECT Id FROM Categorie WHERE Nome = 'Condimenti'));
-                ";
-
-                    // lancio il comando sulla connessione che ho appena creato
-                    using (var command = new SqliteCommand(insertProdotti, connection))
-                    {
-                        command.ExecuteNonQuery();
-                    }
-                }
-            }
+        // Seeding Prodotti: Inserisce i dati solo se la tabella è vuota
+        if (GetTableCount(connection, "Prodotti") == 0)
+        {
+            var insertProdotti = @"
+            INSERT INTO Prodotti (Nome, Prezzo, CategoriaId, FornitoreId) VALUES 
+            ('Trofie', 1.59, (SELECT Id FROM Categorie WHERE Nome = 'Pasta'), (SELECT Id FROM Fornitori WHERE Nome = 'Michele')),
+            ('Aglio', 0.59, (SELECT Id FROM Categorie WHERE Nome = 'Verdure'), (SELECT Id FROM Fornitori WHERE Nome = 'Giovanni')),
+            ('Pesto', 2.59, (SELECT Id FROM Categorie WHERE Nome = 'Condimenti'), (SELECT Id FROM Fornitori WHERE Nome = 'Oreste'));";
+            ExecuteNonQuery(connection, insertProdotti);
         }
     }
-    // Metodo per ottenere la connessione al database in modo da poter essere utilizzato in altr parti del codice
-    // oltretutto database initializer è una classe statica quindi posso chiamare questo metodo senza creare un'istanza della classe
 
+    // Esegue una query SQL che non restituisce risultati (CREATE, INSERT, UPDATE, DELETE)
+    private static void ExecuteNonQuery(SqliteConnection connection, string query)
+    {
+        using var command = new SqliteCommand(query, connection);
+        command.ExecuteNonQuery(); // Esegue la query senza restituire dati
+    }
+
+    // Restituisce il numero di record presenti in una tabella specificata
+    private static long GetTableCount(SqliteConnection connection, string tableName)
+    {
+        using var command = new SqliteCommand($"SELECT COUNT(*) FROM {tableName}", connection);
+        return (long)command.ExecuteScalar(); // Ritorna il numero di righe nella tabella
+    }
+
+    // Restituisce una nuova connessione al database SQLite
     public static SqliteConnection GetConnection()
     {
-        return new SqliteConnection(_connectionString); // in questo modo la connessione è creata ma non aperta però puo essere utilizzata in altri metodi
+        return new SqliteConnection(_connectionString); // Crea una connessione senza aprirla
     }
 }

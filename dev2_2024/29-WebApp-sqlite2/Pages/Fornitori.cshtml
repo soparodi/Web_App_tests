@@ -1,0 +1,25 @@
+@page
+@model FornitoriModel
+@{
+    ViewData["Title"] = "Fornitori";
+}
+<h2>@ViewData["Title"]</h2>
+
+<div class="container">
+    <div class="row">
+        @foreach (var f in Model.Fornitore)
+        {
+            <div class="col-md-4 d-flex my-4">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <h5 class="card-title text-dark">@f.FornitoreNome</h5>
+                    </div>
+                    <div class="card-footer d-flex justify-content-between">
+                        <a asp-page="FornitoreEdit" asp-route-id="@f.FornitoreId" class="btn btn-success">Modifica</a>
+                        <a asp-page="FornitoreDelete" asp-route-id="@f.FornitoreId" class="btn btn-success">Elimina</a>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
